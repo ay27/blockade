@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-import bitman.ay27.blockade.LockScreenActivity;
+import bitman.ay27.blockade.activity.LockScreenActivity;
 
 /**
  * Created by ay27 on 15/1/21.
@@ -64,6 +64,6 @@ public class ScreenLockService extends Service {
         super.onDestroy();
 
         unregisterReceiver(screenOnReceiver);
-        unregisterReceiver(screenOffReceiver);
+//        unregisterReceiver(screenOffReceiver);
     }
 }

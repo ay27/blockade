@@ -4,10 +4,13 @@ package bitman.ay27.blockade;
  * Created by ay27 on 15/1/22.
  */
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 
 public class HomeWatcherReceiver extends BroadcastReceiver {
     private static final String LOG_TAG = "HomeReceiver";
@@ -29,6 +32,10 @@ public class HomeWatcherReceiver extends BroadcastReceiver {
             if (SYSTEM_DIALOG_REASON_HOME_KEY.equals(reason)) {
                 // 短按Home键
                 Log.i(LOG_TAG, "homekey");
+
+//                ActivityManager mActivityManager = (ActivityManager) context.getSystemService("activity");
+//                ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
+//                if (topActivity.getPackageName().equals("bitman.ay27.blockade"))
 
 //                if (LockScreenActivity.isActivity && LockScreenActivity.gotoRealHome) {
 //                    Log.i(LOG_TAG, "real home");

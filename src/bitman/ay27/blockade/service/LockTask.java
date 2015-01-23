@@ -5,7 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import bitman.ay27.blockade.LockScreenActivity;
+import bitman.ay27.blockade.activity.LockScreenActivity;
 
 import java.util.TimerTask;
 
@@ -37,7 +37,7 @@ public class LockTask extends TimerTask {
         if (testPackageName.equals(packageName)
                 && testClassName.equals(className) && LockScreenActivity.isLock) {
             Intent intent = new Intent();
-            intent.setClassName("bitman.ay27.blockade", "bitman.ay27.blockade.LockScreenActivity");
+            intent.setClassName("bitman.ay27.blockade", "bitman.ay27.blockade.activity.LockScreenActivity");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }
