@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Hello World, MainActivity"-->
+            <!--/>-->
+
+    <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textOn="开启了锁屏服务，点击关闭"
+            android:textOff="关闭了，点击开启锁屏"
+            android:layout_margin="16dp"
+            android:id="@+id/main_togBtn"/>
+</LinearLayout>
+
