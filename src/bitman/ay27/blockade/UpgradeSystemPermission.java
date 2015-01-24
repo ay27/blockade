@@ -12,10 +12,12 @@ public class UpgradeSystemPermission {
         Process process = null;
         DataOutputStream os = null;
         try {
-            String cmd="chmod 777 " + pkgCodePath;
+            String cmd1="chmod 777 " + pkgCodePath;
+            String cmd2 = "pm grant bitman.ay27.blockade  android.permission.WRITE_SECURE_SETTINGS";
             process = Runtime.getRuntime().exec("su"); //切换到root帐号
             os = new DataOutputStream(process.getOutputStream());
-            os.writeBytes(cmd + "\n");
+            os.writeBytes(cmd1 + "\n");
+            os.writeBytes(cmd2 + "\n");
             os.writeBytes("exit\n");
             os.flush();
             process.waitFor();
