@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import bitman.ay27.blockade.activity.FloatView;
 import bitman.ay27.blockade.activity.LockScreenActivity;
 
 /**
@@ -20,7 +21,7 @@ public class ScreenLockService extends Service {
             KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("");
             keyguardLock.disableKeyguard();//解锁系统锁屏
 
-            Intent intent1 = new Intent(ScreenLockService.this, LockScreenActivity.class);
+            Intent intent1 = new Intent(ScreenLockService.this, FloatView.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent1);//跳转到主界面
@@ -32,7 +33,7 @@ public class ScreenLockService extends Service {
             KeyguardManager keyguardManager = (KeyguardManager)context.getSystemService(context.KEYGUARD_SERVICE);
             KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("");
             keyguardLock.disableKeyguard();//解锁系统锁屏
-            Intent intent1 = new Intent(ScreenLockService.this, LockScreenActivity.class);
+            Intent intent1 = new Intent(ScreenLockService.this, FloatView.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             LockScreenActivity.gotoRealHome = false;

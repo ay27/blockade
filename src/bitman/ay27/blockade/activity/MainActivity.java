@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 import bitman.ay27.blockade.HomeWatcherReceiver;
 import bitman.ay27.blockade.R;
+import bitman.ay27.blockade.UpgradeSystemPermission;
 import bitman.ay27.blockade.service.ScreenLockService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,6 +30,15 @@ public class MainActivity extends Activity {
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
 
+        UpgradeSystemPermission.upgradeRootPermission(getPackageCodePath());
+
+        try {
+            int flag = Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED);
+            Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+
         ButterKnife.inject(this);
 
         togBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -42,7 +53,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        registerHomeKeyReceiver(this);
+//        registerHomeKeyReceiver(this);
     }
 
     private static HomeWatcherReceiver mHomeKeyReceiver = null;
