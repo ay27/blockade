@@ -1,6 +1,7 @@
 package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -101,7 +102,7 @@ public class FloatView extends Activity {
                 | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
         wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;   //这里是关键，你也可以试试2003
-        wmParams.format = 1;
+        wmParams.format = PixelFormat.OPAQUE;
         /**
          *这里的flags也很关键
          *代码实际是wmParams.flags |= FLAG_NOT_FOCUSABLE;

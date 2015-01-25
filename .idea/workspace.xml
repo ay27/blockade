@@ -26,8 +26,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="582e8bfc-baf9-4d71-8bf8-2829a40cc313" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/service/AutoRestartService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/service/DaemonService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/service/OnBootBroadcastReceiver.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/LockScreenActivity$$ViewInjector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/MainActivity$$ViewInjector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/generated/bitman/ay27/blockade/LockScreenActivity$$ViewInjector.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/blockade/generated/bitman/ay27/blockade/MainActivity$$ViewInjector.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/HomeWatcherReceiver.class" afterPath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/HomeWatcherReceiver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/service/ScreenLockService.class" afterPath="$PROJECT_DIR$/out/production/blockade/bitman/ay27/blockade/service/ScreenLockService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/blockade/blockade.apk" afterPath="$PROJECT_DIR$/out/production/blockade/blockade.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/blockade/blockade.unaligned.apk" afterPath="$PROJECT_DIR$/out/production/blockade/blockade.unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradeSystemPermission.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradeSystemPermission.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/FloatView.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/FloatView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blockade.iws" />
@@ -57,33 +77,59 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="698" max-vertical-offset="1320">
-              <caret line="49" column="75" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1254">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScreenLockService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScreenLockService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="1452">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.6314433" vertical-offset="236" max-vertical-offset="1012">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding>
+                <element signature="e#1048#1049#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LockScreenDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/widget/LockScreenDialog.java">
+      <file leaf-file-name="OnBootBroadcastReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/OnBootBroadcastReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="550">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="484">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding>
-                <element signature="e#303#304#0" expanded="false" />
-                <element signature="e#333#334#0" expanded="false" />
-                <element signature="e#557#558#0" expanded="false" />
-                <element signature="e#594#595#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DaemonService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/DaemonService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#309#310#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutoRestartService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/AutoRestartService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="968">
+              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,29 +138,35 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1408">
+            <state vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="1474">
               <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpgradeSystemPermission.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradeSystemPermission.java">
+      <file leaf-file-name="LockService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.048969" vertical-offset="0" max-vertical-offset="968">
-              <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1188">
+              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#596#597#0" expanded="true" />
+                <element signature="e#623#624#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Settings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/provider/Settings.java">
+      <file leaf-file-name="HomeWatcherReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="114019" max-vertical-offset="156024">
-              <caret line="5261" column="35" selection-start-line="5261" selection-start-column="35" selection-end-line="5261" selection-end-column="35" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1144">
+              <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,62 +174,9 @@
       <file leaf-file-name="FloatView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/FloatView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2662">
-              <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lock_screen.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="550" max-vertical-offset="1144">
-              <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1908" max-vertical-offset="2684">
+              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LockScreenActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/LockScreenActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2882" max-vertical-offset="5324">
-              <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4483#4491#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WindowManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/view/WindowManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7728" max-vertical-offset="42944">
-              <caret line="391" column="49" selection-start-line="391" selection-start-column="32" selection-end-line="391" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#88996#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#2187#2188#0" expanded="false" />
-                <element signature="e#2222#2223#0" expanded="false" />
-                <element signature="e#2623#2624#0" expanded="false" />
-                <element signature="e#2658#2659#0" expanded="false" />
-                <element signature="e#72896#72897#0" expanded="false" />
-                <element signature="e#72933#72934#0" expanded="false" />
-                <element signature="e#72978#72979#0" expanded="false" />
-                <element signature="e#73010#73011#0" expanded="false" />
-                <element signature="e#74654#74655#0" expanded="false" />
-                <element signature="e#74713#74714#0" expanded="false" />
-                <element signature="e#74773#74774#0" expanded="false" />
-                <element signature="e#74834#74835#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -205,21 +204,24 @@
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/Activity2.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/LockLayer.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/ScreenLockService.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockService.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockTask.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/LockScreenActivity.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/widget/LockScreenDialog.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java" />
         <option value="$PROJECT_DIR$/res/layout/lock_screen.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/LockScreenActivity.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/FloatView.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradSystemPermission.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradeSystemPermission.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/FloatView.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockService.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/OnBootBroadcastReceiver.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/AutoRestartService.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/DaemonService.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java" />
       </list>
     </option>
   </component>
@@ -255,8 +257,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -433,7 +435,7 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="257c9e55" />
-    <property name="last_opened_file_path" value="$USER_HOME$/android/LockscreenLocker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="LayoutCode.rearrangeEntriesJava" value="true" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -443,11 +445,12 @@
     <property name="project.structure.side.proportion" value="0.31070197" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="LayoutCode.rearrangeEntriesXML" value="false" />
+    <property name="LayoutCode.rearrangeEntriesXML" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_19" />
     <property name="ExportedModule" value="blockade" />
     <property name="ExportedApkPath" value="$PROJECT_DIR$/blockade.apk" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -705,7 +708,7 @@
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -755,16 +758,19 @@
       <workItem from="1422014542452" duration="2846000" />
       <workItem from="1422026881067" duration="674000" />
       <workItem from="1422028297501" duration="964000" />
-      <workItem from="1422062805318" duration="1407000" />
+      <workItem from="1422062805318" duration="4404000" />
+      <workItem from="1422093562596" duration="2296000" />
+      <workItem from="1422157434209" duration="3353000" />
+      <workItem from="1422182088982" duration="1189000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43667000" />
+    <option name="totallyTimeSpent" value="53502000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -778,7 +784,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16881259" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19098713" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -786,8 +792,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32754344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32711443" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32711443" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -883,53 +889,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1540">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/LockScreenActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1012">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4483#4491#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="616">
-          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="352">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="506">
           <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -944,7 +912,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="764" max-vertical-offset="1540">
           <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-          <folding />
+          <folding>
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -968,25 +939,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="352">
           <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="506">
           <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -1001,7 +972,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="506">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1014,25 +988,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="352">
           <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="418">
           <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="10" selection-end-column="14" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -1052,25 +1026,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="352">
           <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="418">
           <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="10" selection-end-column="14" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/platforms/android-21/data/res/values/themes.xml">
@@ -1102,14 +1076,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/keyboard.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8909091" vertical-offset="511" max-vertical-offset="1232">
           <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/style.xml">
@@ -1163,18 +1137,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/app/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52527475" vertical-offset="13269" max-vertical-offset="15202">
-          <caret line="648" column="22" selection-start-line="648" selection-start-column="22" selection-end-line="648" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33203125" vertical-offset="29266" max-vertical-offset="131296">
           <caret line="1464" column="19" selection-start-line="1464" selection-start-column="19" selection-end-line="1464" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1192,23 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1188">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="1100">
-          <caret line="39" column="53" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/view/KeyEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1238" max-vertical-offset="61314">
@@ -1217,77 +1166,52 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="352" max-vertical-offset="550">
           <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="1518">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/widget/LockScreenDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#303#304#0" expanded="false" />
-            <element signature="e#333#334#0" expanded="false" />
-            <element signature="e#557#558#0" expanded="false" />
-            <element signature="e#594#595#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/lock_screen.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="550" max-vertical-offset="1144">
           <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/provider/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114019" max-vertical-offset="156024">
+          <caret line="5261" column="35" selection-start-line="5261" selection-start-column="35" selection-end-line="5261" selection-end-column="35" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/view/WindowManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7728" max-vertical-offset="42944">
-          <caret line="391" column="49" selection-start-line="391" selection-start-column="32" selection-end-line="391" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#88996#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2187#2188#0" expanded="false" />
-            <element signature="e#2222#2223#0" expanded="false" />
-            <element signature="e#2623#2624#0" expanded="false" />
-            <element signature="e#2658#2659#0" expanded="false" />
-            <element signature="e#72896#72897#0" expanded="false" />
-            <element signature="e#72933#72934#0" expanded="false" />
-            <element signature="e#72978#72979#0" expanded="false" />
-            <element signature="e#73010#73011#0" expanded="false" />
-            <element signature="e#74654#74655#0" expanded="false" />
-            <element signature="e#74713#74714#0" expanded="false" />
-            <element signature="e#74773#74774#0" expanded="false" />
-            <element signature="e#74834#74835#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="27880" max-vertical-offset="42944">
+          <caret line="1305" column="41" selection-start-line="1305" selection-start-column="41" selection-end-line="1305" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/graphics/PixelFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3410">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/LockScreenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2882" max-vertical-offset="5324">
-          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4328" max-vertical-offset="5324">
+          <caret line="225" column="0" selection-start-line="225" selection-start-column="0" selection-end-line="233" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4483#4491#0" expanded="true" />
@@ -1295,53 +1219,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java">
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradeSystemPermission.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1320">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="968">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/widget/LockScreenDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="506">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="946">
+          <caret line="30" column="90" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/FloatView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2662">
-          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1908" max-vertical-offset="2684">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/LockService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1188">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="1408">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/OnBootBroadcastReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="484">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/provider/Settings.java">
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/HomeWatcherReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="114019" max-vertical-offset="156024">
-          <caret line="5261" column="35" selection-start-line="5261" selection-start-column="35" selection-end-line="5261" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1408">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1144">
+          <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="698" max-vertical-offset="1320">
-          <caret line="49" column="75" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1254">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/UpgradeSystemPermission.java">
+    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/app/Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.048969" vertical-offset="0" max-vertical-offset="968">
-          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.33247423" vertical-offset="5726" max-vertical-offset="15202">
+          <caret line="298" column="22" selection-start-line="298" selection-start-column="22" selection-end-line="298" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/DaemonService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/AutoRestartService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="968">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/blockade/service/ScreenLockService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6314433" vertical-offset="236" max-vertical-offset="1012">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

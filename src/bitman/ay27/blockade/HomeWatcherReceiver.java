@@ -28,28 +28,12 @@ public class HomeWatcherReceiver extends BroadcastReceiver {
             // android.intent.action.CLOSE_SYSTEM_DIALOGS
             String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
             Log.i(LOG_TAG, "reason: " + reason);
-
             if (SYSTEM_DIALOG_REASON_HOME_KEY.equals(reason)) {
                 // 短按Home键
                 Log.i(LOG_TAG, "homekey");
-
-//                ActivityManager mActivityManager = (ActivityManager) context.getSystemService("activity");
-//                ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
-//                if (topActivity.getPackageName().equals("bitman.ay27.blockade"))
-
-//                if (LockScreenActivity.isActivity && LockScreenActivity.gotoRealHome) {
-//                    Log.i(LOG_TAG, "real home");
-//                    LockScreenActivity.instance.gotoRealHome();
-//                }
-
             } else if (SYSTEM_DIALOG_REASON_RECENT_APPS.equals(reason)) {
                 // 长按Home键 或者 activity切换键
                 Log.i(LOG_TAG, "long press home key or activity switch");
-
-//                Intent myIntent = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-//                myIntent.putExtra("myReason", true);
-//                context.sendOrderedBroadcast(myIntent, null);
-
             } else if (SYSTEM_DIALOG_REASON_LOCK.equals(reason)) {
                 // 锁屏
                 Log.i(LOG_TAG, "lock");
@@ -60,5 +44,4 @@ public class HomeWatcherReceiver extends BroadcastReceiver {
 
         }
     }
-
 }

@@ -30,14 +30,14 @@ public class MainActivity extends Activity {
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
 
-        UpgradeSystemPermission.upgradeRootPermission(getPackageCodePath());
-
-        try {
-            int flag = Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED);
-            Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0);
-        } catch (Settings.SettingNotFoundException e) {
-            e.printStackTrace();
-        }
+//        UpgradeSystemPermission.upgradeRootPermission(getPackageCodePath());
+//
+//        try {
+//            int flag = Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED);
+//            Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0);
+//        } catch (Settings.SettingNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
         ButterKnife.inject(this);
 
