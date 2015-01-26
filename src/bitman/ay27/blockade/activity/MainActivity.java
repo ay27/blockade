@@ -5,14 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 import bitman.ay27.blockade.HomeWatcherReceiver;
 import bitman.ay27.blockade.R;
-import bitman.ay27.blockade.UpgradeSystemPermission;
-import bitman.ay27.blockade.service.ScreenLockService;
+import bitman.ay27.blockade.service.KeyguardService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -45,7 +43,7 @@ public class MainActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    startService(screenLockIntent = new Intent(MainActivity.this, ScreenLockService.class));
+                    startService(screenLockIntent = new Intent(MainActivity.this, KeyguardService.class));
                 }
                 else if (screenLockIntent != null) {
                     stopService(screenLockIntent);

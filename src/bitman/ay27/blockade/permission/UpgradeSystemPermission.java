@@ -1,4 +1,4 @@
-package bitman.ay27.blockade;
+package bitman.ay27.blockade.permission;
 
 import java.io.DataOutputStream;
 

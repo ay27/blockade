@@ -23,18 +23,26 @@
                 >
         </activity>
 
-        <service android:name=".service.ScreenLockService">
-            <intent-filter android:priority="0x7fffffff"/>
+        <service android:name=".service.KeyguardService"
+                 android:exported="true">
+            <intent-filter android:priority="10000"/>
         </service>
-        <service android:name=".service.LockService"/>
+
+        <service android:name=".service.LockService"
+                 android:exported="true"/>
+
+        <service android:name=".service.DaemonService"
+                 android:exported="true"/>
+
+        <receiver android:name=".OnBootBroadcastReceiver"
+                android:exported="true">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
-    <receiver android:name=".BootCompletedReceiver">
-        <intent-filter android:priority="0x7fffffff">
-            <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            <action android:name="android.intent.action.USER_PRESENT"/>
-        </intent-filter>
-    </receiver>
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>

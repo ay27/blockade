@@ -1,6 +1,5 @@
 package bitman.ay27.blockade.service;
 
-import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
@@ -18,4 +17,15 @@ public class DaemonService extends AutoRestartService {
         return null;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        startService(new Intent(this, KeyguardService.class));
+    }
 }
