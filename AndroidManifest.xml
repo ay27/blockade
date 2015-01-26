@@ -23,26 +23,17 @@
                 >
         </activity>
 
-        <service android:name=".service.KeyguardService"
-                 android:exported="true">
-            <intent-filter android:priority="10000"/>
-        </service>
+        <service android:name=".service.KeyguardService"/>
+        <service android:name=".service.DaemonService"/>
 
-        <service android:name=".service.LockService"
-                 android:exported="true"/>
-
-        <service android:name=".service.DaemonService"
-                 android:exported="true"/>
-
-        <receiver android:name=".OnBootBroadcastReceiver"
-                android:exported="true">
+        <receiver android:name=".service.receiver.OnBootBroadcastReceiver"
+                  android:exported="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
 
     </application>
-
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
