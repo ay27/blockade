@@ -35,28 +35,27 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         ButterKnife.inject(this);
 
-        adbSwitch.setChecked(PreferenceUtils.read(KeySet.ADBEnable.name(), false));
-        adbSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        adbSwitch.setChecked(PreferenceUtils.read(KeySet.ADBEnable, false));
+        adbSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.ADBEnable));
+
+        autoBootSwitch.setChecked(PreferenceUtils.read(KeySet.AutoBoot, false));
+        autoBootSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.AutoBoot));
+
+        keyguardSwitch.setChecked(PreferenceUtils.read(KeySet.KeyguardEnable, false));
+        keyguardSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.KeyguardEnable));
+
+        rootSwitch.setChecked(PreferenceUtils.read(KeySet.RootEnable, false));
+        rootSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.RootEnable));
+
+    }
+
+    private CompoundButton.OnCheckedChangeListener generateCheckedChangeListener(final KeySet key) {
+        return new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                
+                PreferenceUtils.write(key, isChecked);
             }
-        });
-
-//        SharedPreferences aa = PreferenceManager.getDefaultSharedPreferences(this);
-
-
-
-//        UpgradeSystemPermission.upgradeRootPermission(getPackageCodePath());
-//
-//        try {
-//            int flag = Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED);
-//            Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0);
-//        } catch (Settings.SettingNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
-
+        };
     }
 
 }

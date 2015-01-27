@@ -3,6 +3,7 @@ package bitman.ay27.blockade.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import bitman.ay27.blockade.BlockadeApplication;
 
 import java.util.Set;
@@ -23,59 +24,59 @@ public class PreferenceUtils {
         editor = preferences.edit();
     }
 
-    public static void write(String key, boolean value) {
+    public static void write(KeySet key, boolean value) {
         PreferenceUtils instance = new PreferenceUtils();
-        instance.editor.putBoolean(key, value);
+        instance.editor.putBoolean(key.name(), value);
         instance.editor.commit();
     }
 
-    public static void write(String key, int value) {
+    public static void write(KeySet key, int value) {
         PreferenceUtils instance = new PreferenceUtils();
-        instance.editor.putInt(key, value);
+        instance.editor.putInt(key.name(), value);
         instance.editor.commit();
     }
 
-    public static void write(String key, long value) {
+    public static void write(KeySet key, long value) {
         PreferenceUtils instance = new PreferenceUtils();
-        instance.editor.putLong(key, value);
+        instance.editor.putLong(key.name(), value);
         instance.editor.commit();
     }
 
-    public static void write(String key, String value) {
+    public static void write(KeySet key, String value) {
         PreferenceUtils instance = new PreferenceUtils();
-        instance.editor.putString(key, value);
+        instance.editor.putString(key.name(), value);
         instance.editor.commit();
     }
 
-    public static void write(String key, Set<String> values) {
+    public static void write(KeySet key, Set<String> values) {
         PreferenceUtils instance = new PreferenceUtils();
-        instance.editor.putStringSet(key, values);
+        instance.editor.putStringSet(key.name(), values);
         instance.editor.commit();
     }
 
-    public static boolean read(String key, boolean defValue) {
+    public static boolean read(KeySet key, boolean defValue) {
         PreferenceUtils instance = new PreferenceUtils();
-        return instance.preferences.getBoolean(key, defValue);
+        return instance.preferences.getBoolean(key.name(), defValue);
     }
 
-    public static int read(String key, int defValue) {
+    public static int read(KeySet key, int defValue) {
         PreferenceUtils instance = new PreferenceUtils();
-        return instance.preferences.getInt(key, defValue);
+        return instance.preferences.getInt(key.name(), defValue);
     }
 
-    public static long read(String key, long defValue) {
+    public static long read(KeySet key, long defValue) {
         PreferenceUtils instance = new PreferenceUtils();
-        return instance.preferences.getLong(key, defValue);
+        return instance.preferences.getLong(key.name(), defValue);
     }
 
-    public static String read(String key, String defValue) {
+    public static String read(KeySet key, String defValue) {
         PreferenceUtils instance = new PreferenceUtils();
-        return instance.preferences.getString(key, defValue);
+        return instance.preferences.getString(key.name(), defValue);
     }
 
-    public static Set<String> read(String key, Set<String> defValue) {
+    public static Set<String> read(KeySet key, Set<String> defValue) {
         PreferenceUtils instance = new PreferenceUtils();
-        return instance.preferences.getStringSet(key, defValue);
+        return instance.preferences.getStringSet(key.name(), defValue);
     }
 
 }
