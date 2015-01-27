@@ -20,7 +20,7 @@ import java.util.List;
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/1/23.
  */
-public class FloatView extends Activity {
+public class KeyguardActivity extends Activity {
 
 
     @InjectViews({R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6})
@@ -33,7 +33,6 @@ public class FloatView extends Activity {
     View view;
 
     WindowManager wm;
-
 
     @OnClick({R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6})
     public void numberBtnClick(Button numBtn) {
@@ -66,8 +65,6 @@ public class FloatView extends Activity {
             wm.removeViewImmediate(view);
             this.finish();
 
-//            gotoRealHome = true;
-//            gotoRealHome();
         } else {
             errorPasswdTxv.setText("error, try again");
             errorPasswdTxv.setVisibility(View.VISIBLE);
@@ -81,9 +78,6 @@ public class FloatView extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.main);
-//        Button bb=new Button(getApplicationContext());
-//        bb.setText("hahaha");
 
         view = getLayoutInflater().inflate(R.layout.lock_screen, null);
 

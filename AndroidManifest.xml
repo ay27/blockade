@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.FloatView"
+        <activity android:name=".activity.KeyguardActivity"
                   android:launchMode="singleTask"
                   android:excludeFromRecents="true"
                 >

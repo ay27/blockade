@@ -4,16 +4,64 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
-    <!--<TextView-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Hello World, MainActivity"-->
-            <!--/>-->
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:text="锁屏"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                />
+        <Switch android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/main_keyguard_switch"
+                android:padding="16dp"/>
+    </LinearLayout>
 
-    <ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:textOn="开启了锁屏服务，点击关闭"
-            android:textOff="关闭了，点击开启锁屏"
-            android:layout_margin="16dp"
-            android:id="@+id/main_togBtn"/>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="开机自启动"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                />
+        <Switch android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/main_autoBoot_switch"
+                android:padding="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="adb调试"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                />
+        <Switch android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/main_adb_switch"
+                android:padding="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+            android:gravity="center"
+            android:clickable="true"
+            android:id="@+id/main_set_passwd">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="密码设置"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                />
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_action_next_item"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="16dp"
+                />
+
+    </LinearLayout>
+
 </LinearLayout>
 

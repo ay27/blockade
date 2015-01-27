@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<color name="separator_press_color">#cc00a3ff</color>-->
+    <color name="separator_default_color">#eee</color>
+    <color name="separator_default_text_color">@android:color/darker_gray</color>
+
+</resources>
