@@ -49,7 +49,6 @@ public class KeyguardActivity extends Activity {
                 break;
             }
         }
-
     }
 
     private void checkPasswd() {

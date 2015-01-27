@@ -10,6 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 import bitman.ay27.blockade.R;
+import bitman.ay27.blockade.preferences.KeySet;
+import bitman.ay27.blockade.preferences.PreferenceUtils;
 import bitman.ay27.blockade.service.KeyguardService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -22,6 +24,8 @@ public class MainActivity extends Activity {
     Switch autoBootSwitch;
     @InjectView(R.id.main_keyguard_switch)
     Switch keyguardSwitch;
+    @InjectView(R.id.main_root_switch)
+    Switch rootSwitch;
     @InjectView(R.id.main_set_passwd)
     View setPasswd;
 
@@ -30,6 +34,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ButterKnife.inject(this);
+
+        adbSwitch.setChecked(PreferenceUtils.read(KeySet.ADBEnable.name(), false));
+        adbSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                
+            }
+        });
 
 //        SharedPreferences aa = PreferenceManager.getDefaultSharedPreferences(this);
 
