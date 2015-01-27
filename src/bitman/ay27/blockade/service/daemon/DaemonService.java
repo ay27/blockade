@@ -1,21 +1,30 @@
-package bitman.ay27.blockade.service;
+package bitman.ay27.blockade.service.daemon;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.IBinder;
+import bitman.ay27.blockade.service.KeyguardService;
 
 /**
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/1/25.
  */
-public abstract class AutoRestartService extends Service {
+public class DaemonService extends Service {
 
-    private Class subCls = null;
+    private IBinder _binder = new ServiceManager();
 
-    public AutoRestartService(Class subCls) {
-        super();
-        this.subCls = subCls;
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return _binder;
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        startService(new Intent(this, KeyguardService.class));
+    }
 
     /**
      * guarantee the service will not be killed.
@@ -32,7 +41,7 @@ public abstract class AutoRestartService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (subCls != null)
-            startService(new Intent(getApplicationContext(), subCls));
+        startService(new Intent(this, DaemonService.class));
     }
+
 }

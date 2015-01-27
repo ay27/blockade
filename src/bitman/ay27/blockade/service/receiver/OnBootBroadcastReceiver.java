@@ -3,8 +3,7 @@ package bitman.ay27.blockade.service.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
-import bitman.ay27.blockade.service.DaemonService;
+import bitman.ay27.blockade.service.daemon.DaemonService;
 
 /**
  * Proudly to user Intellij IDEA.
