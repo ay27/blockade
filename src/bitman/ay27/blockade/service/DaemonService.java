@@ -1,9 +1,8 @@
-package bitman.ay27.blockade.service.daemon;
+package bitman.ay27.blockade.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import bitman.ay27.blockade.service.KeyguardService;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -11,19 +10,19 @@ import bitman.ay27.blockade.service.KeyguardService;
  */
 public class DaemonService extends Service {
 
-    private IBinder _binder = new ServiceManager();
-
+    private ServiceManager manager;
 
     @Override
     public IBinder onBind(Intent intent) {
-        return _binder;
+        return null;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        startService(new Intent(this, KeyguardService.class));
+        manager = ServiceManager.getInstance();
+        manager.startAll();
     }
 
     /**
@@ -40,7 +39,11 @@ public class DaemonService extends Service {
      */
     @Override
     public void onDestroy() {
+        manager.stopAll();
+        manager.destroy();
+
         super.onDestroy();
+
         startService(new Intent(this, DaemonService.class));
     }
 

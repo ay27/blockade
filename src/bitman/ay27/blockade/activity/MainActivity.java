@@ -2,19 +2,21 @@ package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.ToggleButton;
 import bitman.ay27.blockade.R;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.preferences.PreferenceUtils;
-import bitman.ay27.blockade.service.KeyguardService;
+import bitman.ay27.blockade.service.DaemonService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import dalvik.system.DexFile;
+
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 public class MainActivity extends Activity {
 

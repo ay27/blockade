@@ -1,18 +1,18 @@
-package bitman.ay27.blockade.service;
+package bitman.ay27.blockade.service.user_service;
 
 import android.app.KeyguardManager;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.IBinder;
 import bitman.ay27.blockade.activity.KeyguardActivity;
+import bitman.ay27.blockade.preferences.KeySet;
+import bitman.ay27.blockade.service.AbsService;
 
 /**
  * Created by ay27 on 15/1/21.
  */
-public class KeyguardService extends Service {
+public class KeyguardService extends AbsService {
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -30,14 +30,36 @@ public class KeyguardService extends Service {
         }
     };
 
+    private MyBinder binder = null;
+
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public MyBinder onBind(Intent intent) {
+        if (binder == null) {
+            binder = new MyBinder() {
+                @Override
+                public AbsService getService() {
+                    return KeyguardService.this;
+                }
+            };
+        }
+
+        return binder;
+    }
+
+    @Override
+    public KeySet getEnableKey() {
+        return KeySet.KeyguardEnable;
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return super.onUnbind(intent);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
 
         IntentFilter screenOff = new IntentFilter("android.intent.action.SCREEN_OFF");
         this.registerReceiver(screenOffReceiver, screenOff);
@@ -49,8 +71,9 @@ public class KeyguardService extends Service {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
+
         unregisterReceiver(screenOnReceiver);
         unregisterReceiver(screenOffReceiver);
-        super.onDestroy();
     }
 }

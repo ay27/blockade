@@ -24,10 +24,10 @@
                 >
         </activity>
 
-        <service android:name=".service.KeyguardService"/>
-        <service android:name=".service.daemon.DaemonService"/>
+        <service android:name=".service.user_service.KeyguardService"/>
+        <service android:name=".service.DaemonService"/>
 
-        <receiver android:name=".service.receiver.OnBootBroadcastReceiver"
+        <receiver android:name=".service.OnBootBroadcastReceiver"
                   android:exported="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

@@ -1,9 +1,9 @@
-package bitman.ay27.blockade.service.receiver;
+package bitman.ay27.blockade.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import bitman.ay27.blockade.service.daemon.DaemonService;
+import bitman.ay27.blockade.service.DaemonService;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -12,12 +12,8 @@ import bitman.ay27.blockade.service.daemon.DaemonService;
 public class OnBootBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-
-//        Toast.makeText(context, "boot completed action has got", Toast.LENGTH_LONG).show();
-
         Intent newIntent = new Intent(context, DaemonService.class);
         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
         context.startService(newIntent);
     }
 }
