@@ -1,6 +1,5 @@
 package bitman.ay27.blockade.service;
 
-import android.util.Pair;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.utils.ClassUtils;
 
@@ -20,7 +19,7 @@ public class ServiceKeyMap {
 
     static {
         serviceMap = new HashMap<KeySet, Class>();
-        List<Class> classes = ClassUtils.getClasssFromPackage(SERVICE_PACKAGE_NAME);
+        List<Class> classes = ClassUtils.getClassesFromPackage(SERVICE_PACKAGE_NAME);
         for (Class cls : classes) {
             try {
                 AbsService oneService = (AbsService) cls.newInstance();

@@ -30,7 +30,7 @@ public class ServiceManager {
             }
         }
     };
-    
+
     private Context context = BlockadeApplication.getContext();
     private Map<KeySet, Class> runningServices;
 
@@ -49,6 +49,8 @@ public class ServiceManager {
     }
 
     public void stopService(Class cls) {
+        if (cls == null)
+            return;
         KeySet key = ServiceKeyMap.get(cls);
         if (runningServices.containsKey(key)) {
             boolean value = PreferenceUtils.read(key, false);
@@ -64,6 +66,8 @@ public class ServiceManager {
     }
 
     public void startService(Class cls) {
+        if (cls == null)
+            return;
         KeySet key = ServiceKeyMap.get(cls);
         boolean enable = PreferenceUtils.read(key, false);
         if (enable) {

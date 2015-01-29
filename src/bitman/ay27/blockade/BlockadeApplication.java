@@ -3,6 +3,8 @@ package bitman.ay27.blockade;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import bitman.ay27.blockade.preferences.KeySet;
+import bitman.ay27.blockade.preferences.PreferenceUtils;
 import bitman.ay27.blockade.service.DaemonService;
 
 /**
@@ -17,8 +19,6 @@ public class BlockadeApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
-        startService(new Intent(this, DaemonService.class));
     }
 
     public static Context getContext() {

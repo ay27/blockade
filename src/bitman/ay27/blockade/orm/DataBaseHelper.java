@@ -20,7 +20,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public static final int DB_VERSION = 1;
 
     public static final String MODULE_PACKAGE_NAME = "bitman.ay27.blockade.orm.module";
-    private static List<Class> allModules = ClassUtils.getClasssFromPackage(MODULE_PACKAGE_NAME);
+    private static List<Class> allModules = ClassUtils.getClassesFromPackage(MODULE_PACKAGE_NAME);
 
 
     public DatabaseHelper(Context context) {

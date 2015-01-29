@@ -1,6 +1,11 @@
 package bitman.ay27.blockade.permission;
 
+import android.content.Context;
+import bitman.ay27.blockade.BlockadeApplication;
+
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.jar.Manifest;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -8,29 +13,65 @@ import java.io.DataOutputStream;
  */
 public class UpgradeSystemPermission {
 
-    public static boolean upgradeRootPermission(String pkgCodePath) {
+    public static final String PERMISSION_WRITE_SECURE_SETTINGS = "android.permission.WRITE_SECURE_SETTINGS";
+    public static final String PACKAGE_NAME = BlockadeApplication.getContext().getPackageName();
+
+    private UpgradeSystemPermission() {}
+
+    public static boolean upgradeRootPermission() {
+        return runCmd("chmod 777 "+PACKAGE_NAME);
+//        Process process = null;
+//        DataOutputStream os = null;
+//        try {
+//            String cmd="chmod 777 " + PACKAGE_NAME;
+//            runCmd(cmd);
+////            String cmd2 = "pm grant bitman.ay27.blockade  android.permission.WRITE_SECURE_SETTINGS";
+//            process = Runtime.getRuntime().exec("su"); //切换到root帐号
+//            os = new DataOutputStream(process.getOutputStream());
+//            os.writeBytes(cmd1 + "\n");
+////            os.writeBytes(cmd2 + "\n");
+//            os.writeBytes("exit\n");
+//            os.flush();
+//            process.waitFor();
+//        } catch (Exception e) {
+//            return false;
+//        } finally {
+//            try {
+//                if (os != null) {
+//                    os.close();
+//                }
+//                process.destroy();
+//            } catch (Exception e) {
+//            }
+//        }
+//        return true;
+    }
+
+    public static boolean grantSystemPermission(String permission) {
+        return runCmd("pm grant "+PACKAGE_NAME+" "+permission);
+    }
+
+    public static boolean runCmd(String cmd) {
         Process process = null;
-        DataOutputStream os = null;
+        DataOutputStream dos = null;
         try {
-            String cmd1="chmod 777 " + pkgCodePath;
-            String cmd2 = "pm grant bitman.ay27.blockade  android.permission.WRITE_SECURE_SETTINGS";
-            process = Runtime.getRuntime().exec("su"); //切换到root帐号
-            os = new DataOutputStream(process.getOutputStream());
-            os.writeBytes(cmd1 + "\n");
-            os.writeBytes(cmd2 + "\n");
-            os.writeBytes("exit\n");
-            os.flush();
+            process = Runtime.getRuntime().exec("su");
+            dos = new DataOutputStream(process.getOutputStream());
+            dos.writeBytes(cmd + "\n exit\n");
+            dos.flush();
             process.waitFor();
         } catch (Exception e) {
             return false;
         } finally {
-            try {
-                if (os != null) {
-                    os.close();
+            if (dos != null) {
+                try {
+                    dos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                process.destroy();
-            } catch (Exception e) {
             }
+            if (process != null)
+                process.destroy();
         }
         return true;
     }

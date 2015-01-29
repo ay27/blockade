@@ -15,9 +15,9 @@ import java.util.List;
 public class ClassUtils {
 
 
-    public static List<Class> getClasssFromPackage(String packageName) {
+    public static List<Class> getClassesFromPackage(String packageName) {
         Context context = BlockadeApplication.getContext();
-        ArrayList<Class> strings = new ArrayList<Class>();
+        ArrayList<Class> result = new ArrayList<Class>();
 
         try {
             String path = context.getPackageManager().getApplicationInfo(
@@ -27,12 +27,12 @@ public class ClassUtils {
             while (entries.hasMoreElements()) {
                 String name = entries.nextElement();
                 if (name.startsWith(packageName) && !name.contains("$"))
-                    strings.add(Class.forName(name));
+                    result.add(Class.forName(name));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return strings;
+        return result;
     }
 }
