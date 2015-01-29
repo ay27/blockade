@@ -3,42 +3,45 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@color/windowBackground"
+        android:gravity="center_horizontal">
+
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:textColor="@color/white"
+              android:background="@color/red_1"
+              android:textSize="18sp"
+              android:padding="16dp"
+              android:text="error"
+              android:id="@+id/error_pwd_txv"
+            android:gravity="center"
+            android:layout_marginTop="32dp"/>
 
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="20dp">
-        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:minWidth="60dp"
-                  android:id="@+id/edt_1"
-                  android:enabled="false"
+            android:gravity="center_horizontal"
+            android:layout_margin="16dp"
+            >
+        <EditText style="@style/keyguard_input_edit"
+                  android:id="@+id/keyguard_edt_1"
                 />
-        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:minWidth="60dp"
-                  android:id="@+id/edt_2"
-                  android:enabled="false"
+        <EditText style="@style/keyguard_input_edit"
+                  android:id="@+id/keyguard_edt_2"
                 />
-        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:minWidth="60dp"
-                  android:id="@+id/edt_3"
-                  android:enabled="false"
+        <EditText style="@style/keyguard_input_edit"
+                  android:id="@+id/keyguard_edt_3"
                 />
-        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:minWidth="60dp"
-                  android:id="@+id/edt_4"
-                  android:enabled="false"
+        <EditText style="@style/keyguard_input_edit"
+                  android:id="@+id/keyguard_edt_4"
                 />
     </LinearLayout>
 
+    <bitman.ay27.blockade.widget.RandomKeyboard android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+            android:id="@+id/keyguard_keyboard"/>
 
-    <include layout="@layout/keyboard"
-             />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textColor="@android:color/holo_red_light"
-              android:textSize="18sp"
-              android:padding="16dp"
-            android:id="@+id/error_pwd_txv"/>
+    <!--<include layout="@layout/keyboard"-->
+             <!--/>-->
 
 
     <!--<Button android:layout_width="wrap_content" android:layout_height="wrap_content"-->

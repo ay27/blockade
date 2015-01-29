@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 import bitman.ay27.blockade.BlockadeApplication;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.preferences.PreferenceUtils;
@@ -57,6 +58,7 @@ public class ServiceManager {
             if (!value) {
                 context.stopService(new Intent(context, cls));
                 runningServices.remove(key);
+                Toast.makeText(context, cls.getSimpleName()+" close", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -74,6 +76,7 @@ public class ServiceManager {
             Intent intent = new Intent(context, cls);
             context.startService(intent);
             runningServices.put(key, cls);
+            Toast.makeText(context, cls.getSimpleName()+" open", Toast.LENGTH_SHORT).show();
         }
     }
 

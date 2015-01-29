@@ -41,13 +41,13 @@ public class MainActivity extends Activity {
             if (result) {
                 result = SettingsUtils.setADB(isChecked);
                 if (result) {
-                    Toast.makeText(MainActivity.this, "set adb success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "set adb success", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "set adb failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "set adb failed", Toast.LENGTH_SHORT).show();
                 }
             }
             else {
-                Toast.makeText(MainActivity.this, "require root perimission failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "require root perimission failed", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -58,15 +58,15 @@ public class MainActivity extends Activity {
             if (isChecked) {
                 boolean result = UpgradeSystemPermission.upgradeRootPermission();
                 if (result) {
-                    Toast.makeText(MainActivity.this, "open root success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "open root success", Toast.LENGTH_SHORT).show();
                     adbSwitch.setEnabled(true);
                 } else {
-                    Toast.makeText(MainActivity.this, "open root failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "open root failed", Toast.LENGTH_SHORT).show();
                     adbSwitch.setEnabled(false);
                     rootSwitch.setChecked(false);
                 }
             } else {
-                Toast.makeText(MainActivity.this, "root close", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "root close", Toast.LENGTH_SHORT).show();
                 adbSwitch.setEnabled(false);
             }
         }
@@ -90,7 +90,6 @@ public class MainActivity extends Activity {
         autoBootSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.AutoBoot));
         keyguardSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.KeyguardEnable));
         rootSwitch.setOnCheckedChangeListener(rootSwitchListener);
-
 
         startService(new Intent(this, DaemonService.class));
     }

@@ -2,17 +2,18 @@ package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
 import android.graphics.PixelFormat;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import bitman.ay27.blockade.R;
+import bitman.ay27.blockade.utils.TaskUtils;
+import bitman.ay27.blockade.widget.RandomKeyboard;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
-import butterknife.OnClick;
 
 import java.util.List;
 
@@ -23,54 +24,88 @@ import java.util.List;
 public class KeyguardActivity extends Activity {
 
 
-    @InjectViews({R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6})
-    List<Button> btns;
-    @InjectViews({R.id.edt_1, R.id.edt_2, R.id.edt_3, R.id.edt_4})
+    @InjectViews({R.id.keyguard_edt_1, R.id.keyguard_edt_2, R.id.keyguard_edt_3, R.id.keyguard_edt_4})
     List<EditText> edts;
     @InjectView(R.id.error_pwd_txv)
-    TextView errorPasswdTxv;
+    TextView errorTxv;
+    @InjectView(R.id.keyguard_keyboard)
+    RandomKeyboard keyboard;
 
     View view;
-
     WindowManager wm;
+    private RandomKeyboard.NumberClickListener keyboardListener = new RandomKeyboard.NumberClickListener() {
+        @Override
+        public void onClick(View v, String value) {
 
-    @OnClick({R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6})
-    public void numberBtnClick(Button numBtn) {
-        for (int i = 0; i < edts.size(); i++) {
-            EditText editText = edts.get(i);
-            if (editText.getText() == null || editText.getText().toString() == null || editText.getText().toString().isEmpty()) {
-                editText.setText(numBtn.getText());
+            errorTxv.setVisibility(View.INVISIBLE);
 
-                if (i == edts.size() - 1) {
-                    checkPasswd();
+            if (v.getId() == R.id.key_btn_back) {
+                for (int i = edts.size() - 1; i >= 0; i--) {
+                    if (!edts.get(i).getText().toString().isEmpty()) {
+                        edts.get(i).setText("");
+                        return;
+                    }
+                }
+                return;
+            } else if (v.getId() == R.id.key_btn_cancel) {
+                for (EditText text : edts) {
+                    text.setText("");
+                }
+                return;
+            }
+
+            for (int i = 0; i < edts.size(); i++) {
+                EditText text = edts.get(i);
+                if (text.getText().toString().isEmpty()) {
+                    text.setText(value);
+                    if (i == edts.size() - 1) {
+                        checkPasswd();
+                    }
                     return;
                 }
+            }
+        }
+    };
 
-                break;
+    private void checkPasswd() {
+        String passwd = "";
+        for (EditText text : edts) {
+            passwd += text.getText().toString();
+        }
+
+        errorTxv.setVisibility(View.VISIBLE);
+        if (passwd.equals("1234")) {
+            errorTxv.setBackgroundResource(R.color.green_1);
+            errorTxv.setText("success");
+            finishMySelf();
+        } else {
+            errorTxv.setBackgroundResource(R.color.red_1);
+            errorTxv.setText("failed");
+            for (EditText text : edts) {
+                text.setText("");
             }
         }
     }
 
-    private void checkPasswd() {
-        String passwd = "";
-        for (EditText editText : edts) {
-            passwd += editText.getText().toString();
-        }
-
-        if (passwd.equals("1234")) {
-            errorPasswdTxv.setText("success");
-            errorPasswdTxv.setVisibility(View.VISIBLE);
-
-            wm.removeViewImmediate(view);
-            this.finish();
-
-        } else {
-            errorPasswdTxv.setText("error, try again");
-            errorPasswdTxv.setVisibility(View.VISIBLE);
-            for (EditText editText : edts) {
-                editText.setText("");
+    private void finishMySelf() {
+        TaskUtils.executeAsyncTask(new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
             }
-        }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                wm.removeViewImmediate(view);
+                finish();
+            }
+        });
     }
 
 
@@ -81,6 +116,10 @@ public class KeyguardActivity extends Activity {
         view = getLayoutInflater().inflate(R.layout.lock_screen, null);
 
         ButterKnife.inject(this, view);
+
+        keyboard.registerListener(keyboardListener);
+        keyboard.randomIt();
+        errorTxv.setVisibility(View.INVISIBLE);
 
         wm = (WindowManager) getApplicationContext().getSystemService("window");
         WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();

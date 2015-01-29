@@ -13,4 +13,8 @@
 
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
+
+    <color name="red_1">#ffd9534f</color>
+    <color name="green_1">#ff4cae4c</color>
+    <color name="blue_1">#ff428bca</color>
 </resources>
