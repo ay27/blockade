@@ -9,6 +9,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import bitman.ay27.blockade.R;
+import bitman.ay27.blockade.preferences.KeySet;
+import bitman.ay27.blockade.preferences.PreferenceUtils;
 import bitman.ay27.blockade.utils.TaskUtils;
 import bitman.ay27.blockade.widget.RandomKeyboard;
 import butterknife.ButterKnife;
@@ -74,7 +76,10 @@ public class KeyguardActivity extends Activity {
         }
 
         errorTxv.setVisibility(View.VISIBLE);
-        if (passwd.equals("1234")) {
+
+        String settedPasswd = PreferenceUtils.read(KeySet.KeyguardPasswd, "");
+
+        if (passwd.equals(settedPasswd)) {
             errorTxv.setBackgroundResource(R.color.green_1);
             errorTxv.setText("success");
             finishMySelf();

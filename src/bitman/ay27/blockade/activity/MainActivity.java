@@ -2,7 +2,10 @@ package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -15,13 +18,14 @@ import bitman.ay27.blockade.service.DaemonService;
 import bitman.ay27.blockade.utils.SettingsUtils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import dalvik.system.DexFile;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     @InjectView(R.id.main_adb_switch)
     Switch adbSwitch;
@@ -33,6 +37,8 @@ public class MainActivity extends Activity {
     Switch rootSwitch;
     @InjectView(R.id.main_set_passwd)
     View setPasswd;
+    @InjectView(R.id.main_toolbar)
+    Toolbar toolbar;
 
     private CompoundButton.OnCheckedChangeListener adbSwitchListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
@@ -78,6 +84,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         ButterKnife.inject(this);
 
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle("Blockade");
+        setSupportActionBar(toolbar);
+
         adbSwitch.setChecked(PreferenceUtils.read(KeySet.ADBEnable, false));
         autoBootSwitch.setChecked(PreferenceUtils.read(KeySet.AutoBoot, false));
         keyguardSwitch.setChecked(PreferenceUtils.read(KeySet.KeyguardEnable, false));
@@ -101,6 +111,11 @@ public class MainActivity extends Activity {
                 PreferenceUtils.write(key, isChecked);
             }
         };
+    }
+
+    @OnClick(R.id.main_set_passwd)
+    public void click(View view) {
+        startActivity(new Intent(this, SetPasswdActivity.class));
     }
 
 }

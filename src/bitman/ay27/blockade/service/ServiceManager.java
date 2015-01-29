@@ -3,7 +3,6 @@ package bitman.ay27.blockade.service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 import bitman.ay27.blockade.BlockadeApplication;
 import bitman.ay27.blockade.preferences.KeySet;
@@ -23,11 +22,13 @@ public class ServiceManager {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String _key) {
             KeySet key = KeySet.valueOf(_key);
-            boolean enable = PreferenceUtils.read(key, false);
-            if (enable) {
-                startService(key);
-            } else {
-                stopService(key);
+            if (sharedPreferences.getAll().get(_key) instanceof Boolean) {
+                boolean enable = PreferenceUtils.read(key, false);
+                if (enable) {
+                    startService(key);
+                } else {
+                    stopService(key);
+                }
             }
         }
     };
@@ -58,7 +59,7 @@ public class ServiceManager {
             if (!value) {
                 context.stopService(new Intent(context, cls));
                 runningServices.remove(key);
-                Toast.makeText(context, cls.getSimpleName()+" close", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, cls.getSimpleName() + " close", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -76,19 +77,19 @@ public class ServiceManager {
             Intent intent = new Intent(context, cls);
             context.startService(intent);
             runningServices.put(key, cls);
-            Toast.makeText(context, cls.getSimpleName()+" open", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, cls.getSimpleName() + " open", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void startAll() {
-        PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(onPreferenceChangedListener);
+        PreferenceUtils.getPreferences().registerOnSharedPreferenceChangeListener(onPreferenceChangedListener);
         for (Class cls : ServiceKeyMap.values()) {
             startService(cls);
         }
     }
 
     public void stopAll() {
-        PreferenceManager.getDefaultSharedPreferences(context).unregisterOnSharedPreferenceChangeListener(onPreferenceChangedListener);
+        PreferenceUtils.getPreferences().unregisterOnSharedPreferenceChangeListener(onPreferenceChangedListener);
         for (KeySet key : runningServices.keySet()) {
             stopService(key);
         }

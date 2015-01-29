@@ -24,6 +24,8 @@
                 >
         </activity>
 
+        <activity android:name=".activity.SetPasswdActivity" />
+
         <service android:name=".service.user_service.KeyguardService"/>
         <service android:name=".service.DaemonService"/>
 

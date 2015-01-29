@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.widget.Toast;
 import bitman.ay27.blockade.activity.KeyguardActivity;
 import bitman.ay27.blockade.preferences.KeySet;
+import bitman.ay27.blockade.preferences.PreferenceUtils;
 import bitman.ay27.blockade.service.AbsService;
 
 /**
@@ -60,7 +61,7 @@ public class KeyguardService extends AbsService {
     @Override
     public void onCreate() {
         super.onCreate();
-        
+
         IntentFilter screenOff = new IntentFilter("android.intent.action.SCREEN_OFF");
         this.registerReceiver(screenOffReceiver, screenOff);
 
@@ -75,5 +76,9 @@ public class KeyguardService extends AbsService {
 
         unregisterReceiver(screenOnReceiver);
         unregisterReceiver(screenOffReceiver);
+
+        if (PreferenceUtils.read(getEnableKey(), false)) {
+            startService(new Intent(this, KeyguardService.class));
+        }
     }
 }

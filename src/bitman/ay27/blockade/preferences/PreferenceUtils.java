@@ -2,8 +2,6 @@ package bitman.ay27.blockade.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
 import bitman.ay27.blockade.BlockadeApplication;
 
 import java.util.Set;
@@ -14,14 +12,21 @@ import java.util.Set;
  */
 public class PreferenceUtils {
 
+    private static final String PREFERENCE_NAME = "preferences";
     private Context context;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
     private PreferenceUtils() {
         context = BlockadeApplication.getContext();
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+//        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         editor = preferences.edit();
+    }
+
+    public static SharedPreferences getPreferences() {
+        PreferenceUtils instance = new PreferenceUtils();
+        return instance.preferences;
     }
 
     public static void write(KeySet key, boolean value) {
@@ -43,9 +48,13 @@ public class PreferenceUtils {
     }
 
     public static void write(KeySet key, String value) {
+//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context1);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putString(key.name(), value);
+//        editor.commit();
         PreferenceUtils instance = new PreferenceUtils();
         instance.editor.putString(key.name(), value);
-        instance.editor.commit();
+        instance.editor.apply();
     }
 
     public static void write(KeySet key, Set<String> values) {
