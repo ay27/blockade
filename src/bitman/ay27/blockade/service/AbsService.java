@@ -13,6 +13,9 @@ public abstract class AbsService extends Service {
     @Override
     public abstract MyBinder onBind(Intent intent);
 
+    /**
+     * must guarantee the key-value is a boolean.
+     */
     public abstract KeySet getEnableKey();
 
     public abstract static class MyBinder extends Binder {

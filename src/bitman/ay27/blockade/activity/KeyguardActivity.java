@@ -1,9 +1,11 @@
 package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;

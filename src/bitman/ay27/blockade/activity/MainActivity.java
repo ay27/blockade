@@ -1,6 +1,5 @@
 package bitman.ay27.blockade.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,11 +18,6 @@ import bitman.ay27.blockade.utils.SettingsUtils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import dalvik.system.DexFile;
-
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -43,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
     private CompoundButton.OnCheckedChangeListener adbSwitchListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            PreferenceUtils.write(KeySet.ADBEnable, isChecked);
             boolean result = UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_WRITE_SECURE_SETTINGS);
             if (result) {
                 result = SettingsUtils.setADB(isChecked);
@@ -51,8 +46,7 @@ public class MainActivity extends ActionBarActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "set adb failed", Toast.LENGTH_SHORT).show();
                 }
-            }
-            else {
+            } else {
                 Toast.makeText(MainActivity.this, "require root perimission failed", Toast.LENGTH_SHORT).show();
             }
 
@@ -61,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
     private CompoundButton.OnCheckedChangeListener rootSwitchListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            PreferenceUtils.write(KeySet.RootEnable, isChecked);
             if (isChecked) {
                 boolean result = UpgradeSystemPermission.upgradeRootPermission();
                 if (result) {
@@ -74,6 +69,16 @@ public class MainActivity extends ActionBarActivity {
             } else {
                 Toast.makeText(MainActivity.this, "root close", Toast.LENGTH_SHORT).show();
                 adbSwitch.setEnabled(false);
+            }
+        }
+    };
+    private CompoundButton.OnCheckedChangeListener keyguardSwitchListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            PreferenceUtils.write(KeySet.KeyguardEnable, isChecked);
+            if (PreferenceUtils.read(KeySet.KeyguardPasswd, "").isEmpty()) {
+                Toast.makeText(MainActivity.this, "please set your passwd", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, SetPasswdActivity.class));
             }
         }
     };
@@ -98,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
 
         adbSwitch.setOnCheckedChangeListener(adbSwitchListener);
         autoBootSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.AutoBoot));
-        keyguardSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.KeyguardEnable));
+        keyguardSwitch.setOnCheckedChangeListener(keyguardSwitchListener);
         rootSwitch.setOnCheckedChangeListener(rootSwitchListener);
 
         startService(new Intent(this, DaemonService.class));

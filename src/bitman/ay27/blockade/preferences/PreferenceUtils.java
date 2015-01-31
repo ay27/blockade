@@ -19,7 +19,6 @@ public class PreferenceUtils {
 
     private PreferenceUtils() {
         context = BlockadeApplication.getContext();
-//        preferences = PreferenceManager.getDefaultSharedPreferences(context);
         preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         editor = preferences.edit();
     }
@@ -48,10 +47,6 @@ public class PreferenceUtils {
     }
 
     public static void write(KeySet key, String value) {
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context1);
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putString(key.name(), value);
-//        editor.commit();
         PreferenceUtils instance = new PreferenceUtils();
         instance.editor.putString(key.name(), value);
         instance.editor.apply();
