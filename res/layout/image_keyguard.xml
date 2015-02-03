@@ -22,6 +22,9 @@
         <Button android:layout_width="100dp" android:layout_height="60dp"
                 android:text="clear"
                 android:id="@+id/image_keyguard_clear_btn"/>
+        <!--<Button android:layout_width="100dp" android:layout_height="60dp"-->
+                <!--android:text="bitmap"-->
+                <!--android:id="@+id/image_keyguard_bitmap_btn"/>-->
     </LinearLayout>
 
 

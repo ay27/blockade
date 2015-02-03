@@ -1,10 +1,7 @@
 package bitman.ay27.blockade.widget;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
+import android.graphics.*;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
@@ -24,7 +21,8 @@ public class DrawView extends View {
     private static final Paint circlePaint;
     private static final Paint dotsPaint;
     private static final Paint movingPaint;
-    private static final int POINT_WIDTH = 20;
+    private static final int POINT_WIDTH = 50;
+    private static final int POINT_NUMBER = 50;
 
     static {
         linePaint = new Paint();
@@ -38,7 +36,7 @@ public class DrawView extends View {
         setPaint(movingPaint, POINT_WIDTH, Paint.Style.FILL, Color.YELLOW);
     }
 
-    private static final int POINT_NUMBER = 10;
+
     private static final String TAG = "DrawView";
     private ArrayList<Pair<Point, Point>> lines;
     private ArrayList<Pair<Point, Integer>> circles;
@@ -65,6 +63,7 @@ public class DrawView extends View {
         paint.setStrokeWidth(width);
         paint.setStyle(style);
         paint.setColor(color);
+        paint.setAntiAlias(true);
     }
 
     public ArrayList<Pair<Point, Integer>> getCircles() {
@@ -95,15 +94,23 @@ public class DrawView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        drawMySelf(canvas);
+    }
+
+    public void drawMySelf(Canvas canvas) {
+
         //---draw dot ------------
         for (Point point : dots) {
-            canvas.drawPoint(point.x, point.y, dotsPaint);
+            canvas.drawCircle(point.x, point.y, POINT_WIDTH/2, dotsPaint);
+//            canvas.drawPoint(point.x, point.y, dotsPaint);
         }
 
         //----draw line-----------
         for (Pair<Point, Point> line : lines) {
             Point start = line.first, end = line.second;
             canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+            canvas.drawCircle(start.x, start.y, POINT_WIDTH/2, linePaint);
+            canvas.drawCircle(end.x, end.y, POINT_WIDTH/2, linePaint);
         }
 
         //----draw circle---------
@@ -115,8 +122,25 @@ public class DrawView extends View {
 
         //----draw moving line-----
         for (Point point : movingDrawingPoints) {
-            canvas.drawPoint(point.x, point.y, movingPaint);
+            canvas.drawCircle(point.x, point.y, POINT_WIDTH/2, movingPaint);
+//            canvas.drawPoint(point.x, point.y, movingPaint);
         }
+    }
+
+    public Bitmap getBitmap() {
+//        this.setDrawingCacheEnabled(true);
+//        this.buildDrawingCache();
+//        Bitmap bmp = Bitmap.createBitmap(this.getDrawingCache());
+//        this.setDrawingCacheEnabled(false);
+
+        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_4444);
+        Canvas canvas = new Canvas(bitmap);
+        drawMySelf(canvas);
+
+//        init();
+//        this.invalidate();
+
+        return bitmap;
     }
 
     @Override
@@ -124,40 +148,40 @@ public class DrawView extends View {
         Point currentPoint = new Point((int) event.getX(), (int) event.getY());
         movingDrawingPoints.add(currentPoint);
 
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
-
-            case MotionEvent.ACTION_DOWN:
-                startPoint = new Point(currentPoint);
-                movingDrawingPoints.add(currentPoint);
-                break;
-
-            case MotionEvent.ACTION_UP:
-
-                // 拟合出一个圆
-                if (near(startPoint, currentPoint) && movingDrawingPoints.size() > POINT_NUMBER) {
-                    Pair<Point, Integer> temp = getCircle(movingDrawingPoints);
-                    circles.add(temp);
-                    Log.i(TAG, "circle: x = " + temp.first.x + " y = " + temp.first.y + " r = " + temp.second);
-                }
-                // 拟合出一个点
-                else if (near(startPoint, currentPoint) && movingDrawingPoints.size() < POINT_NUMBER) {
-                    Point temp = getDot(movingDrawingPoints);
-                    dots.add(temp);
-                    Log.i(TAG, "dot: x = " + temp.x + " y = " + temp.y);
-                }
-                // 拟合一条直线
-                else {
-                    Pair<Point, Point> temp = new Pair<Point, Point>(startPoint, currentPoint);
-                    lines.add(temp);
-                    Log.i(TAG, "line: sx = " + temp.first.x + " sy = " + temp.first.y + " ex = " + temp.second.x + " ey = " + temp.second.y);
-                }
-
-                movingDrawingPoints.clear();
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-
-        }
+//        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+//
+//            case MotionEvent.ACTION_DOWN:
+//                startPoint = new Point(currentPoint);
+//                movingDrawingPoints.add(currentPoint);
+//                break;
+//
+//            case MotionEvent.ACTION_UP:
+//
+//                // 拟合出一个圆
+//                if (near(startPoint, currentPoint) && movingDrawingPoints.size() > POINT_NUMBER) {
+//                    Pair<Point, Integer> temp = getCircle(movingDrawingPoints);
+//                    circles.add(temp);
+//                    Log.i(TAG, "circle: x = " + temp.first.x + " y = " + temp.first.y + " r = " + temp.second);
+//                }
+//                // 拟合出一个点
+//                else if (near(startPoint, currentPoint) && movingDrawingPoints.size() < POINT_NUMBER) {
+//                    Point temp = getDot(movingDrawingPoints);
+//                    dots.add(temp);
+//                    Log.i(TAG, "dot: x = " + temp.x + " y = " + temp.y);
+//                }
+//                // 拟合一条直线
+//                else {
+//                    Pair<Point, Point> temp = new Pair<Point, Point>(startPoint, currentPoint);
+//                    lines.add(temp);
+//                    Log.i(TAG, "line: sx = " + temp.first.x + " sy = " + temp.first.y + " ex = " + temp.second.x + " ey = " + temp.second.y);
+//                }
+//
+//                movingDrawingPoints.clear();
+//                break;
+//
+//            case MotionEvent.ACTION_MOVE:
+//
+//        }
 
         this.invalidate();
         return true;

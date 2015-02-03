@@ -80,6 +80,8 @@ public class KeyguardActivity extends Activity {
         errorTxv.setVisibility(View.VISIBLE);
 
         String settedPasswd = PreferenceUtils.read(KeySet.KeyguardPasswd, "");
+        if (settedPasswd.equals(""))
+            settedPasswd = "1234";
 
         if (passwd.equals(settedPasswd)) {
             errorTxv.setBackgroundResource(R.color.green_1);
