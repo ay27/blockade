@@ -16,13 +16,13 @@ import java.util.List;
  */
 public class DrawView extends View {
     private static final String TAG = "DrawView";
-    private static final double FIT_DOT_THRESHOLD_SQR = 16.0 * 16.0;
     private static final Paint paint;
 
     static {
         paint = new Paint();
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(16);
         paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     private ArrayList<LinePoint> line;
@@ -54,22 +54,10 @@ public class DrawView extends View {
         for (int i = 1; i < line.size(); i++) {
             Point pre = line.get(i - 1).point;
             Point now = line.get(i).point;
-            path.quadTo(pre.x, pre.y, (pre.x + now.x) / 2, (pre.y + now.y) / 2);
+            path.lineTo(now.x, now.y);
+//            path.quadTo(pre.x, pre.y, (pre.x + now.x) / 2, (pre.y + now.y) / 2);
         }
         canvas.drawPath(path, paint);
-    }
-
-    /**
-     * bind two LinePoint to one LinePoint, make it average.
-     */
-    private static LinePoint bindDot(LinePoint p1, LinePoint p2) {
-        Point tmp = new Point((p1.point.x + p2.point.x) / 2, (p1.point.y + p2.point.y) / 2);
-        return new LinePoint(tmp, (p1.time + p2.time) / 2);
-    }
-
-    private static boolean near(Point p1, Point p2) {
-        double dis = (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
-        return FIT_DOT_THRESHOLD_SQR - dis > 0.0001;
     }
 
     private void init() {
@@ -78,14 +66,13 @@ public class DrawView extends View {
         line = new ArrayList<LinePoint>();
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public ArrayList<ArrayList<LinePoint>> getLines() {
+        return lines;
+    }
 
-        for (ArrayList<LinePoint> oneLine : lines) {
-            drawLine(canvas, oneLine);
-        }
-        drawLine(canvas, line);
+    public void clean() {
+        init();
+        invalidate();
     }
 
     @Override
@@ -97,11 +84,11 @@ public class DrawView extends View {
         //=====  add the point to current line
         Point currentPoint = new Point((int) event.getX(), (int) event.getY());
         int time = (int) (System.currentTimeMillis() - initTime);
-        if (line.size() >= 1 && near(currentPoint, line.get(line.size() - 1).point)) {
-            line.add(bindDot(new LinePoint(currentPoint, time), line.get(line.size() - 1)));
-        } else {
+//        if (line.size() >= 1 && near(currentPoint, line.get(line.size() - 1).point)) {
+//            line.add(bindDot(new LinePoint(currentPoint, time), line.get(line.size() - 1)));
+//        } else {
             line.add(new LinePoint(currentPoint, time));
-        }
+//        }
         //=====
 
         Log.i(TAG, "time = " + time + " point=" + currentPoint.x + "," + currentPoint.y);
@@ -117,13 +104,30 @@ public class DrawView extends View {
         return true;
     }
 
-    private static class LinePoint {
-        int time;
-        Point point;
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        for (ArrayList<LinePoint> oneLine : lines) {
+            drawLine(canvas, oneLine);
+        }
+        drawLine(canvas, line);
+
+    }
+
+    public static class LinePoint {
+        public int time;
+        public Point point;
 
         public LinePoint(Point point, int time) {
             this.point = point;
             this.time = time;
         }
+
+        public LinePoint(LinePoint other) {
+            this.time = other.time;
+            this.point = new Point(other.point);
+        }
+
     }
 }
