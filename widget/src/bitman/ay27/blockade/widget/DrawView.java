@@ -16,17 +16,23 @@ import java.util.List;
  */
 public class DrawView extends View {
     private static final String TAG = "DrawView";
-    private static final Paint paint;
+    private static final Paint paint, dotPaint;
 
     static {
         paint = new Paint();
         paint.setStrokeWidth(16);
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.STROKE);
+
+        dotPaint = new Paint();
+        dotPaint.setStrokeWidth(16);
+        dotPaint.setColor(Color.BLUE);
+        dotPaint.setStyle(Paint.Style.STROKE);
     }
 
     private ArrayList<LinePoint> line;
     private ArrayList<ArrayList<LinePoint>> lines;
+    private ArrayList<LinePoint> dots;
     private long initTime = -1;
 
     public DrawView(Context context) {
@@ -64,6 +70,7 @@ public class DrawView extends View {
         initTime = -1;
         lines = new ArrayList<ArrayList<LinePoint>>();
         line = new ArrayList<LinePoint>();
+        dots = new ArrayList<LinePoint>();
     }
 
     public ArrayList<ArrayList<LinePoint>> getLines() {
@@ -113,7 +120,30 @@ public class DrawView extends View {
         }
         drawLine(canvas, line);
 
+        if (dots.size()>=1) {
+            for (LinePoint point : dots) {
+                canvas.drawPoint(point.point.x, point.point.y, dotPaint);
+            }
+        }
+
     }
+
+    public void drawDenoiseLine(ArrayList<ArrayList<LinePoint>> lines1, ArrayList<ArrayList<LinePoint>> lines2) {
+        lines = new ArrayList<ArrayList<LinePoint>>();
+        lines.add(lines1.get(0));
+        lines.add(lines2.get(0));
+
+        invalidate();
+    }
+
+    public void drawInflectionPoint(ArrayList<LinePoint> inflectionPoint, ArrayList<LinePoint> inflectionPoint1) {
+        dots = new ArrayList<LinePoint>();
+        dots.addAll(inflectionPoint);
+        dots.addAll(inflectionPoint1);
+
+        invalidate();
+    }
+
 
     public static class LinePoint {
         public int time;

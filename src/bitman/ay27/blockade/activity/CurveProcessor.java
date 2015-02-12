@@ -22,7 +22,7 @@ public class CurveProcessor {
     public static final double SEGMENT_LENGTH = 50.0;
     public static final double START_POINT_DIS_THRESHOLD = 100.0;
     public static final double FIT_DOT_THRESHOLD = 16.0;
-    public static final double FIX_DOT_TIME_THRESHOLD = 50.0;
+    public static final double FIT_DOT_TIME_THRESHOLD = 50.0;
     public static final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / 6.0);
     public static final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / 3.0);
     public static final double CHAIN_MATCHING_TOLERANCE = 10.0;
@@ -48,13 +48,14 @@ public class CurveProcessor {
      * bind two LinePoint to one LinePoint, make it average.
      */
     private static DrawView.LinePoint bindDot(DrawView.LinePoint p1, DrawView.LinePoint p2) {
-        Point tmp = new Point((p1.point.x + p2.point.x) / 2, (p1.point.y + p2.point.y) / 2);
+//        Point tmp = new Point((p1.point.x + p2.point.x) / 2, (p1.point.y + p2.point.y) / 2);
+        Point tmp = new Point(p1.point);
         return new DrawView.LinePoint(tmp, (p1.time + p2.time) / 2);
     }
 
     public boolean juxtapose() {
-        lines1 = deNoise(lines1);
-        lines2 = deNoise(lines2);
+//        lines1 = deNoise(lines1);
+//        lines2 = deNoise(lines2);
         segments1 = split_curve(lines1);
         segments2 = split_curve(lines2);
         chainCode1 = calc_included_angle_chain(segments1);
@@ -74,7 +75,7 @@ public class CurveProcessor {
             line.add(lastOne = oneLine.get(0));
             for (int i = 1; i < oneLine.size(); i++) {
                 if (get_distance(lastOne.point, oneLine.get(i).point) - FIT_DOT_THRESHOLD <= PRECISION_THRESHOLD
-                        && Math.abs(lastOne.time - oneLine.get(i).time)-FIX_DOT_TIME_THRESHOLD <= PRECISION_THRESHOLD) {
+                        && Math.abs(lastOne.time - oneLine.get(i).time)- FIT_DOT_TIME_THRESHOLD <= PRECISION_THRESHOLD) {
                     DrawView.LinePoint tmp = bindDot(lastOne, oneLine.get(i));
                     line.remove(lastOne);
                     line.add(lastOne = tmp);
