@@ -45,8 +45,8 @@ public class ImageKeyguardActivity extends Activity {
     @OnClick(R.id.image_keyguard_check_btn)
     public void checkClick(View v) {
         lines2 = drawView.getLines();
-//        CurveProcessor processor = new CurveProcessor(lines1, lines2);
-        InflectionProcessor processor = new InflectionProcessor(lines1, lines2);
+        CurveProcessor processor = new CurveProcessor(lines1, lines2);
+//        InflectionProcessor processor = new InflectionProcessor(lines1, lines2);
         new AlertDialog.Builder(this)
                 .setTitle("result")
                 .setMessage(""+processor.juxtapose())
@@ -61,10 +61,15 @@ public class ImageKeyguardActivity extends Activity {
     @OnClick(R.id.image_keyguard_bitmap_btn)
     public void bitmapClick(View v) {
         drawView.clean();
-        InflectionProcessor processor = new InflectionProcessor(lines1, lines2);
+
+        CurveProcessor processor = new CurveProcessor(lines1, lines2);
         processor.juxtapose();
-        drawView.drawDenoiseLine(processor.getLines1(), processor.getLines2());
-        drawView.drawInflectionPoint(processor.getInflection1().getInflectionPoint(), processor.getInflection2().getInflectionPoint());
+        drawView.drawCurve(processor.getSegments1(), processor.getSegments2());
+
+//        InflectionProcessor processor = new InflectionProcessor(lines1, lines2);
+//        processor.juxtapose();
+//        drawView.drawDenoiseLine(processor.getLines1(), processor.getLines2());
+//        drawView.drawInflectionPoint(processor.getInflection1().getInflectionPoint(), processor.getInflection2().getInflectionPoint());
     }
 
     @Override

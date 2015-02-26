@@ -29,8 +29,12 @@ public class MainActivity extends ActionBarActivity {
     Switch keyguardSwitch;
     @InjectView(R.id.main_root_switch)
     Switch rootSwitch;
+    @InjectView(R.id.main_app_lock_switch)
+    Switch appLockSwitch;
     @InjectView(R.id.main_set_passwd)
     View setPasswd;
+    @InjectView(R.id.main_app_lock)
+    View appLock;
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
 
@@ -76,10 +80,16 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             PreferenceUtils.write(KeySet.KeyguardEnable, isChecked);
-            if (PreferenceUtils.read(KeySet.KeyguardPasswd, "").isEmpty()) {
+            if (PreferenceUtils.read(KeySet.NumberPassword, "").isEmpty()) {
                 Toast.makeText(MainActivity.this, "please set your passwd", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, SetPasswdActivity.class));
             }
+        }
+    };
+    private CompoundButton.OnCheckedChangeListener appLockSwitchListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            PreferenceUtils.write(KeySet.AppLockEnable, isChecked);
         }
     };
 
@@ -97,6 +107,7 @@ public class MainActivity extends ActionBarActivity {
         autoBootSwitch.setChecked(PreferenceUtils.read(KeySet.AutoBoot, false));
         keyguardSwitch.setChecked(PreferenceUtils.read(KeySet.KeyguardEnable, false));
         rootSwitch.setChecked(PreferenceUtils.read(KeySet.RootEnable, false));
+        appLockSwitch.setChecked(PreferenceUtils.read(KeySet.AppLockEnable, false));
 
         adbSwitch.setEnabled(rootSwitch.isChecked());
         adbSwitch.setChecked(rootSwitch.isChecked() && adbSwitch.isChecked());
@@ -105,6 +116,7 @@ public class MainActivity extends ActionBarActivity {
         autoBootSwitch.setOnCheckedChangeListener(generateCheckedChangeListener(KeySet.AutoBoot));
         keyguardSwitch.setOnCheckedChangeListener(keyguardSwitchListener);
         rootSwitch.setOnCheckedChangeListener(rootSwitchListener);
+        appLockSwitch.setOnCheckedChangeListener(appLockSwitchListener);
 
         startService(new Intent(this, DaemonService.class));
     }
@@ -123,4 +135,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(new Intent(this, SetPasswdActivity.class));
     }
 
+    @OnClick(R.id.main_app_lock)
+    public void app_lock_click(View view) {
+        startActivity(new Intent(this, AppLockSettingActivity.class));
+    }
 }

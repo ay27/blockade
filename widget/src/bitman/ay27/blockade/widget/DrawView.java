@@ -144,6 +144,23 @@ public class DrawView extends View {
         invalidate();
     }
 
+    public void drawCurve(ArrayList<ArrayList<LinePoint>> segments1, ArrayList<ArrayList<LinePoint>> segments2) {
+        lines = new ArrayList<ArrayList<LinePoint>>();
+        lines.addAll(segments1);
+        lines.addAll(segments2);
+
+        dots = new ArrayList<LinePoint>();
+        for (ArrayList<LinePoint> segment : segments1) {
+            dots.addAll(segment);
+        }
+
+        for (ArrayList<LinePoint> segment : segments2) {
+            dots.addAll(segment);
+        }
+
+        invalidate();
+    }
+
 
     public static class LinePoint {
         public int time;

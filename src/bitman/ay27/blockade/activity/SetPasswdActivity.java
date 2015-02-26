@@ -43,8 +43,8 @@ public class SetPasswdActivity extends ActionBarActivity {
     public void okClick(View view) {
         if (passwdInput.getText().toString().length() == 4) {
             try {
-                PreferenceUtils.write(KeySet.KeyguardPasswd, passwdInput.getText().toString());
-//                PreferenceUtils.write(KeySet.KeyguardPasswd, "good");
+                PreferenceUtils.write(KeySet.NumberPassword, passwdInput.getText().toString());
+//                PreferenceUtils.write(KeySet.NumberPassword, "good");
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(SetPasswdActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class SetPasswdActivity extends ActionBarActivity {
 //            try {
 //                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putString(KeySet.KeyguardPasswd.name(), passwdInput.getText().toString());
+//                editor.putString(KeySet.NumberPassword.name(), passwdInput.getText().toString());
 //                editor.commit();
 //            } catch (Exception e) {
 //                e.printStackTrace();

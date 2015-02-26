@@ -44,4 +44,20 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
+    <!-- style in layout -->
+    <style name="app_lock_input_edit">
+        <item name="android:layout_width">68dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">textPassword</item>
+        <!--<item name="android:background">@drawable/keyguard_edit_text</item>-->
+        <item name="android:enabled">false</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Transparent">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>

@@ -10,7 +10,7 @@
                  android:persistent="true"
                  android:name=".BlockadeApplication"
             >
-        <activity android:name=".activity.ImageKeyguardActivity"
+        <activity android:name=".activity.MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,10 +24,14 @@
                 >
         </activity>
 
-        <activity android:name=".activity.SetPasswdActivity" />
+        <activity android:name=".activity.SetPasswdActivity"/>
+        <activity android:name=".activity.AppLockSettingActivity"/>
+        <activity android:name=".activity.AppLockActivity"
+                  android:theme="@android:style/Theme.Translucent"/>
 
         <service android:name=".service.user_service.KeyguardService"/>
         <service android:name=".service.DaemonService"/>
+        <service android:name=".service.user_service.AppLockService"/>
 
         <receiver android:name=".service.OnBootBroadcastReceiver"
                   android:exported="true">

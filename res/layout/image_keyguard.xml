@@ -13,17 +13,17 @@
         />
     <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:orientation="horizontal">
-    <Button android:layout_width="120dp" android:layout_height="60dp"
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="set pattern"
             android:id="@+id/image_keyguard_ok_btn"/>
-        <Button android:layout_width="100dp" android:layout_height="60dp"
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="check"
                 android:id="@+id/image_keyguard_check_btn"/>
-        <Button android:layout_width="100dp" android:layout_height="60dp"
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="clear"
                 android:id="@+id/image_keyguard_clear_btn"/>
-        <Button android:layout_width="100dp" android:layout_height="60dp"
-                android:text="bitmap"
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="fit"
                 android:id="@+id/image_keyguard_bitmap_btn"/>
     </LinearLayout>
 

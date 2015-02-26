@@ -6,5 +6,5 @@ package bitman.ay27.blockade.preferences;
  */
 public enum KeySet {
     AutoBoot, ADBEnable, KeyguardEnable, RootEnable,
-    KeyguardPasswd
+    NumberPassword, AppLockEnable
 }

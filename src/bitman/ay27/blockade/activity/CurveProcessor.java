@@ -1,6 +1,7 @@
 package bitman.ay27.blockade.activity;
 
 import android.graphics.Point;
+import android.util.Log;
 import bitman.ay27.blockade.widget.DrawView;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  */
 
 /**
- * input two groups of line, which without noisy, then juxtapose whether the two groups of line
+ * input two groups of line, then juxtapose whether the two groups of line
  * is similar.
  */
 public class CurveProcessor {
@@ -19,7 +20,7 @@ public class CurveProcessor {
     /**
      * every segment's length
      */
-    public static final double SEGMENT_LENGTH = 50.0;
+    public static final double SEGMENT_LENGTH = 120.0;
     public static final double START_POINT_DIS_THRESHOLD = 100.0;
     public static final double FIT_DOT_THRESHOLD = 16.0;
     public static final double FIT_DOT_TIME_THRESHOLD = 50.0;
@@ -29,10 +30,12 @@ public class CurveProcessor {
     public static final double PRECISION_THRESHOLD = 0.00001;
     public static final double RHYTHM_ENDPOINT_TIME_THRESHOLD = 1000;
     public static final double RHYTHM_SEGMENT_THRESHOLD = 1000;
+    private static final String TAG = "CurveProcessor";
 
     private ArrayList<ArrayList<DrawView.LinePoint>> lines1, lines2;
     private ArrayList<ArrayList<Segment>> segments1, segments2;
     private ArrayList<ArrayList<Double>> chainCode1, chainCode2;
+    private ArrayList<Integer> num_of_segments;
 
 
     public CurveProcessor(ArrayList<ArrayList<DrawView.LinePoint>> lines1, ArrayList<ArrayList<DrawView.LinePoint>> lines2) {
@@ -53,18 +56,49 @@ public class CurveProcessor {
         return new DrawView.LinePoint(tmp, (p1.time + p2.time) / 2);
     }
 
+    public ArrayList<ArrayList<DrawView.LinePoint>> getSegments1() {
+        ArrayList<ArrayList<DrawView.LinePoint>> result = new ArrayList<ArrayList<DrawView.LinePoint>>();
+        for (ArrayList<Segment> segments : segments1) {
+            ArrayList<DrawView.LinePoint> oneLine = new ArrayList<DrawView.LinePoint>();
+            for (Segment segment : segments) {
+                oneLine.add(segment.firstPoint());
+                oneLine.add(segment.points.get(segment.points.size() - 1));
+            }
+            result.add(oneLine);
+        }
+
+        return result;
+    }
+
+    public ArrayList<ArrayList<DrawView.LinePoint>> getSegments2() {
+        ArrayList<ArrayList<DrawView.LinePoint>> result = new ArrayList<ArrayList<DrawView.LinePoint>>();
+        for (ArrayList<Segment> segments : segments2) {
+            ArrayList<DrawView.LinePoint> oneLine = new ArrayList<DrawView.LinePoint>();
+            for (Segment segment : segments) {
+                oneLine.add(segment.firstPoint());
+                oneLine.add(segment.points.get(segment.points.size() - 1));
+            }
+            result.add(oneLine);
+        }
+
+        return result;
+    }
+
     public boolean juxtapose() {
-//        lines1 = deNoise(lines1);
-//        lines2 = deNoise(lines2);
+        lines1 = deNoise(lines1);
+        lines2 = deNoise(lines2);
         segments1 = split_curve(lines1);
         segments2 = split_curve(lines2);
         chainCode1 = calc_included_angle_chain(segments1);
         chainCode2 = calc_included_angle_chain(segments2);
 
-        boolean result = compare_start_point(lines1, lines2);
-        result = result && compare_included_angle_chain(chainCode1, chainCode2);
+//        boolean result = compare_start_point(lines1, lines2);
+//        Log.i(TAG, "start point compare result :" +result);
+        boolean result =  compare_included_angle_chain(chainCode1, chainCode2);
+        Log.i(TAG, "compare included angle chain result :" +result);
+//        result = result && compare_rhythm(segments1, segments2);
+//        Log.i(TAG, "compare rhythm :" +result);
         return result;
-//        return result && compare_rhythm(segments1, segments2);
     }
 
     private ArrayList<ArrayList<DrawView.LinePoint>> deNoise(ArrayList<ArrayList<DrawView.LinePoint>> lines) {
@@ -75,12 +109,11 @@ public class CurveProcessor {
             line.add(lastOne = oneLine.get(0));
             for (int i = 1; i < oneLine.size(); i++) {
                 if (get_distance(lastOne.point, oneLine.get(i).point) - FIT_DOT_THRESHOLD <= PRECISION_THRESHOLD
-                        && Math.abs(lastOne.time - oneLine.get(i).time)- FIT_DOT_TIME_THRESHOLD <= PRECISION_THRESHOLD) {
+                        && Math.abs(lastOne.time - oneLine.get(i).time) - FIT_DOT_TIME_THRESHOLD <= PRECISION_THRESHOLD) {
                     DrawView.LinePoint tmp = bindDot(lastOne, oneLine.get(i));
                     line.remove(lastOne);
                     line.add(lastOne = tmp);
-                }
-                else {
+                } else {
                     line.add(lastOne = oneLine.get(i));
                 }
             }
@@ -107,21 +140,43 @@ public class CurveProcessor {
     private ArrayList<ArrayList<Segment>> split_curve(ArrayList<ArrayList<DrawView.LinePoint>> lines) {
         ArrayList<ArrayList<Segment>> result = new ArrayList<ArrayList<Segment>>();
 
-        for (ArrayList<DrawView.LinePoint> oneLine : lines) {
-            result.add(split_one_curve(oneLine));
+        if (num_of_segments == null) {
+            num_of_segments = new ArrayList<Integer>();
+            for (ArrayList<DrawView.LinePoint> oneLine : lines) {
+                ArrayList<Segment> tmp = split_one_curve(oneLine, SEGMENT_LENGTH);
+                result.add(tmp);
+                num_of_segments.add(tmp.size());
+            }
+        } else {
+            for (int i = 0; i < lines.size(); i++) {
+                double left = 1.0, right = 2 * SEGMENT_LENGTH, mid = SEGMENT_LENGTH;
+                ArrayList<DrawView.LinePoint> oneLine = lines.get(i);
+                final int num_of_segment = num_of_segments.get(i);
+                ArrayList<Segment> tmp = null;
+                while ((left<=right) && (tmp = split_one_curve(oneLine, mid)).size() != num_of_segment) {
+                    if (tmp.size() > num_of_segment) {
+                        left = mid;
+                        mid = (right + mid) / 2 + 1;
+                    } else {
+                        right = mid;
+                        mid = (left + mid) / 2 - 1;
+                    }
+                }
+                result.add(tmp);
+            }
         }
 
         return result;
     }
 
-    private ArrayList<Segment> split_one_curve(ArrayList<DrawView.LinePoint> oneLine) {
+    private ArrayList<Segment> split_one_curve(ArrayList<DrawView.LinePoint> oneLine, final double segment_length) {
         ArrayList<Segment> result = new ArrayList<Segment>();
         Segment currentSegment = null;
         for (DrawView.LinePoint point : oneLine) {
             if (currentSegment == null) {
                 currentSegment = new Segment();
             }
-            if (currentSegment.contain(point)) {
+            if (currentSegment.contain(point, segment_length)) {
                 currentSegment.points.add(point);
             } else {
                 currentSegment.fitting();
@@ -272,6 +327,20 @@ public class CurveProcessor {
 //            return dis - SEGMENT_LENGTH <= PRECISION_THRESHOLD;
         }
 
+        public boolean contain(DrawView.LinePoint point, double segment_length) {
+            if (points.size() < 2)
+                return true;
+
+            for (DrawView.LinePoint p : points) {
+                double dis = get_distance(p.point, point.point);
+                if (dis - segment_length >= PRECISION_THRESHOLD) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         /**
          * use Least squares to fit a line.
          * y = ax+b
@@ -335,5 +404,6 @@ public class CurveProcessor {
             }
             return rightTime;
         }
+
     }
 }
