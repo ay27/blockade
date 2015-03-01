@@ -92,12 +92,12 @@ public class CurveProcessor {
         chainCode1 = calc_included_angle_chain(segments1);
         chainCode2 = calc_included_angle_chain(segments2);
 
-//        boolean result = compare_start_point(lines1, lines2);
-//        Log.i(TAG, "start point compare result :" +result);
-        boolean result =  compare_included_angle_chain(chainCode1, chainCode2);
+        boolean result = compare_start_point(lines1, lines2);
+        Log.i(TAG, "start point compare result :" +result);
+        result = result &&  compare_included_angle_chain(chainCode1, chainCode2);
         Log.i(TAG, "compare included angle chain result :" +result);
-//        result = result && compare_rhythm(segments1, segments2);
-//        Log.i(TAG, "compare rhythm :" +result);
+        result = result && compare_rhythm(segments1, segments2);
+        Log.i(TAG, "compare rhythm :" +result);
         return result;
     }
 

@@ -32,6 +32,18 @@ public class AppLockSettingActivity extends ActionBarActivity {
     @InjectView(R.id.app_lock_list)
     ListView listView;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.app_lock_settings);
+        ButterKnife.inject(this);
+
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle("app lock");
+        setSupportActionBar(toolbar);
+
+        listView.setAdapter(new AppListAdapter(this));
+    }
 
     static class AppListAdapter extends BaseAdapter {
 
@@ -67,7 +79,6 @@ public class AppLockSettingActivity extends ActionBarActivity {
         private void loadData() {
 
 
-
             infos = context.getPackageManager().getInstalledApplications(0);
             try {
                 lockedApps = new ArrayList<AppLockItem>(dao.queryBuilder().orderBy("packageName", true)
@@ -97,13 +108,9 @@ public class AppLockSettingActivity extends ActionBarActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.app_list_item, null);
-                holder = new ViewHolder(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
+            convertView = LayoutInflater.from(context).inflate(R.layout.app_list_item, null);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
 
             ApplicationInfo app = infos.get(position);
             holder.icon.setImageDrawable(app.loadIcon(context.getPackageManager()));
@@ -126,13 +133,25 @@ public class AppLockSettingActivity extends ActionBarActivity {
             return new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppLockItem temp;
                     if (isChecked) {
-                        dao.create(new AppLockItem(infos.get(position).packageName));
+                        dao.create(temp = new AppLockItem(infos.get(position).packageName));
+                        lockedApps.add(temp);
                     } else {
-                        dao.delete(new AppLockItem(infos.get(position).packageName));
+                        dao.delete(temp = findLockedApp(infos.get(position).packageName));
+                        lockedApps.remove(temp);
                     }
                 }
             };
+        }
+
+        private AppLockItem findLockedApp(String packageName) {
+            for (AppLockItem lockItem : lockedApps) {
+                if (lockItem.getPackageName().equals(packageName))
+                    return lockItem;
+            }
+
+            return null;
         }
 
         class ViewHolder {
@@ -147,19 +166,6 @@ public class AppLockSettingActivity extends ActionBarActivity {
                 ButterKnife.inject(this, view);
             }
         }
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.app_lock_settings);
-        ButterKnife.inject(this);
-
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("app lock");
-        setSupportActionBar(toolbar);
-
-        listView.setAdapter(new AppListAdapter(this));
     }
 
 }

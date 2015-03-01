@@ -11,7 +11,11 @@ import com.j256.ormlite.field.DatabaseField;
  * save the lock app list.
  */
 public class AppLockItem {
-    @DatabaseField(canBeNull = false)
+
+    @DatabaseField(generatedId = true)
+    long id;
+
+    @DatabaseField(canBeNull = false, unique = true)
     String packageName;
 
     public AppLockItem() {

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
+import bitman.ay27.blockade.BlockadeApplication;
 import bitman.ay27.blockade.activity.AppLockActivity;
 import bitman.ay27.blockade.orm.DatabaseHelper;
 import bitman.ay27.blockade.orm.module.AppLockItem;
@@ -61,7 +62,7 @@ public class AppLockService extends AbsService {
     public void onCreate() {
         super.onCreate();
         lockedList = new ArrayList<AppLockItem>();
-        tempStopLockList = new ArrayList<AppLockItem>();
+        tempStopLockList = BlockadeApplication.tempStopLockList;
         load_locked_app_list();
         startTimer();
     }
@@ -84,6 +85,10 @@ public class AppLockService extends AbsService {
         if (PreferenceUtils.read(getEnableKey(), false)) {
             startService(new Intent(this, KeyguardService.class));
         }
+    }
+
+    public void addTempStop(String packageName) {
+        tempStopLockList.add(new AppLockItem(packageName));
     }
 
     @Override
@@ -111,8 +116,10 @@ public class AppLockService extends AbsService {
 
             if (ifContains(packageName)) {
                 Intent intent = new Intent(AppLockService.this, AppLockActivity.class);
+//                intent.setClassName("bitman.ay27.blockade", "bitman.ay27.blockade.activity.AppLockActivity");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+                intent.putExtra("PackageName", packageName);
+                startActivity(intent);
             }
         }
 
