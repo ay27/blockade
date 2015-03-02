@@ -18,11 +18,6 @@ public class BlockadeApplication extends Application {
 
     private static BlockadeApplication instance = null;
 
-    public static ArrayList<AppLockItem> tempStopLockList;
-    static {
-        tempStopLockList = new ArrayList<AppLockItem>();
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();

@@ -1,14 +1,13 @@
 package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import bitman.ay27.blockade.BlockadeApplication;
 import bitman.ay27.blockade.R;
-import bitman.ay27.blockade.orm.module.AppLockItem;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.preferences.PreferenceUtils;
 import bitman.ay27.blockade.utils.TaskUtils;
@@ -79,15 +78,8 @@ public class AppLockActivity extends Activity {
         if (passwd.equals(settedPasswd)) {
             errorTxv.setBackgroundResource(R.color.green_1);
             errorTxv.setText("success");
-
-            BlockadeApplication.tempStopLockList.add(new AppLockItem(getIntent().getStringExtra("PackageName")));
-
-//            appLockService.addTempStop(getIntent().getStringExtra("PackageName"));
-
             finishMySelf();
         } else {
-//            errorTxv.setBackgroundResource(R.color.red_1);
-//            errorTxv.setText("failed");
             for (EditText text : edts) {
                 text.setText("");
             }
@@ -109,6 +101,10 @@ public class AppLockActivity extends Activity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
+                Intent intent = new Intent();
+                intent.setClassName(getIntent().getStringExtra("PackageName"), getIntent().getStringExtra("ClassName"));
+                intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                startActivity(intent);
                 finish();
             }
         });

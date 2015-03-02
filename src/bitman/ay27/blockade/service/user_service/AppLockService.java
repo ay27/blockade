@@ -1,12 +1,9 @@
 package bitman.ay27.blockade.service.user_service;
 
 import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.util.Log;
-import bitman.ay27.blockade.BlockadeApplication;
 import bitman.ay27.blockade.activity.AppLockActivity;
 import bitman.ay27.blockade.orm.DatabaseHelper;
 import bitman.ay27.blockade.orm.module.AppLockItem;
@@ -16,9 +13,7 @@ import bitman.ay27.blockade.service.AbsService;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -28,8 +23,10 @@ public class AppLockService extends AbsService {
 
     private MyBinder binder = null;
     private Timer mTimer;
-    private ArrayList<AppLockItem> lockedList;
-    private ArrayList<AppLockItem> tempStopLockList;
+    private enum RunningStatus {
+        running, stop
+    }
+    private HashMap<String, RunningStatus> lockedMap;
 
     private void startTimer() {
         if (mTimer == null) {
@@ -61,8 +58,7 @@ public class AppLockService extends AbsService {
     @Override
     public void onCreate() {
         super.onCreate();
-        lockedList = new ArrayList<AppLockItem>();
-        tempStopLockList = BlockadeApplication.tempStopLockList;
+        lockedMap = new HashMap<String, RunningStatus>();
         load_locked_app_list();
         startTimer();
     }
@@ -70,11 +66,13 @@ public class AppLockService extends AbsService {
     private void load_locked_app_list() {
         DatabaseHelper helper = new DatabaseHelper(this);
         RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(AppLockItem.class);
+        lockedMap = new HashMap<String, RunningStatus>();
         try {
-            lockedList = new ArrayList<AppLockItem>(dao.queryBuilder().query());
+            for (Object item : dao.queryBuilder().query()) {
+                lockedMap.put(((AppLockItem)item).getPackageName(), RunningStatus.stop);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            lockedList = new ArrayList<AppLockItem>();
         }
     }
 
@@ -104,40 +102,36 @@ public class AppLockService extends AbsService {
 
         @Override
         public void run() {
-            ComponentName topActivity = mActivityManager.getRunningTasks(1).get(0).topActivity;
-            final String packageName = topActivity.getPackageName();
-            String className = topActivity.getClassName();
-            Log.v(TAG, "packageName" + packageName);
-            Log.v(TAG, "className" + className);
+            List<ActivityManager.RunningTaskInfo> runningTaskInfos = mActivityManager.getRunningTasks(Byte.MAX_VALUE);
 
-            if (ifContains(packageName)) {
-                Intent intent = new Intent(AppLockService.this, AppLockActivity.class);
-//                intent.setClassName("bitman.ay27.blockade", "bitman.ay27.blockade.activity.AppLockActivity");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("PackageName", packageName);
-                startActivity(intent);
+            String topPackageName = runningTaskInfos.get(0).topActivity.getPackageName();
+            if (lockedMap.containsKey(topPackageName) &&
+                    lockedMap.get(topPackageName)==RunningStatus.stop) {
+                lockIt(topPackageName, runningTaskInfos.get(0).topActivity.getClassName());
+            }
+
+            clearLockedMap();
+            for (ActivityManager.RunningTaskInfo info : runningTaskInfos) {
+                if (lockedMap.containsKey(info.topActivity.getPackageName())) {
+                    lockedMap.put(info.topActivity.getPackageName(), RunningStatus.running);
+                    Log.i(TAG, "top activity = "+info.topActivity.getPackageName()+" is running");
+                }
             }
         }
 
-        private boolean ifContains(String packageName) {
-            boolean isLocked = false;
-            for (AppLockItem item : lockedList) {
-                if (item.getPackageName().equals(packageName)) {
-                    isLocked = true;
-                    break;
-                }
-            }
-
-            if (!isLocked)
-                return false;
-
-            for (AppLockItem item : tempStopLockList) {
-                if (item.getPackageName().equals(packageName)) {
-                    return false;
-                }
-            }
-
-            return true;
+        private void lockIt(String topPackageName, String className) {
+            Intent intent = new Intent(AppLockService.this, AppLockActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("PackageName", topPackageName);
+            intent.putExtra("ClassName", className);
+            startActivity(intent);
         }
+
+        private void clearLockedMap() {
+            for (String item : lockedMap.keySet()) {
+                lockedMap.put(item, RunningStatus.stop);
+            }
+        }
+
     }
 }

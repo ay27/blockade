@@ -20,7 +20,7 @@
         </activity>
 
         <activity android:name=".activity.KeyguardActivity"
-                  android:launchMode="singleInstance"
+                  android:launchMode="singleTask"
                   android:excludeFromRecents="true"
                   android:exported="true"
                 >
@@ -30,7 +30,7 @@
         <activity android:name=".activity.AppLockSettingActivity"/>
         <activity android:name=".activity.AppLockActivity"
                   android:theme="@android:style/Theme.Translucent"
-                  android:launchMode="singleInstance"
+                  android:launchMode="singleTask"
                   android:excludeFromRecents="true"
                   >
             <intent-filter>
@@ -41,7 +41,8 @@
 
         <service android:name=".service.user_service.KeyguardService"/>
         <service android:name=".service.DaemonService"/>
-        <service android:name=".service.user_service.AppLockService"/>
+        <service android:name=".service.user_service.AppLockService"
+                />
 
         <receiver android:name=".service.OnBootBroadcastReceiver"
                   android:exported="true">
