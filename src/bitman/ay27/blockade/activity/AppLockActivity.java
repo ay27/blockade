@@ -1,11 +1,8 @@
 package bitman.ay27.blockade.activity;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,8 +11,6 @@ import bitman.ay27.blockade.R;
 import bitman.ay27.blockade.orm.module.AppLockItem;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.preferences.PreferenceUtils;
-import bitman.ay27.blockade.service.AbsService;
-import bitman.ay27.blockade.service.user_service.AppLockService;
 import bitman.ay27.blockade.utils.TaskUtils;
 import bitman.ay27.blockade.widget.RandomKeyboard;
 import butterknife.ButterKnife;
@@ -41,7 +36,7 @@ public class AppLockActivity extends Activity {
         @Override
         public void onClick(View v, String value) {
 
-            errorTxv.setVisibility(View.INVISIBLE);
+//            errorTxv.setVisibility(View.INVISIBLE);
 
             if (v.getId() == R.id.key_btn_back) {
                 for (int i = edts.size() - 1; i >= 0; i--) {
@@ -71,28 +66,11 @@ public class AppLockActivity extends Activity {
         }
     };
 
-    private AppLockService appLockService;
-
-    private ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            appLockService = (AppLockService) ((AbsService.MyBinder) service).getService();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            appLockService = null;
-        }
-    };
-
-
     private void checkPasswd() {
         String passwd = "";
         for (EditText text : edts) {
             passwd += text.getText().toString();
         }
-
-        errorTxv.setVisibility(View.VISIBLE);
 
         String settedPasswd = PreferenceUtils.read(KeySet.NumberPassword, "");
         if (settedPasswd.equals(""))
@@ -108,8 +86,8 @@ public class AppLockActivity extends Activity {
 
             finishMySelf();
         } else {
-            errorTxv.setBackgroundResource(R.color.red_1);
-            errorTxv.setText("failed");
+//            errorTxv.setBackgroundResource(R.color.red_1);
+//            errorTxv.setText("failed");
             for (EditText text : edts) {
                 text.setText("");
             }

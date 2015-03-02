@@ -87,10 +87,6 @@ public class AppLockService extends AbsService {
         }
     }
 
-    public void addTempStop(String packageName) {
-        tempStopLockList.add(new AppLockItem(packageName));
-    }
-
     @Override
     public boolean onUnbind(Intent intent) {
         return super.onUnbind(intent);
