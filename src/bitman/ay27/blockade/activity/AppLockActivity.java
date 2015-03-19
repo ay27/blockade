@@ -10,6 +10,7 @@ import android.widget.TextView;
 import bitman.ay27.blockade.R;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.preferences.PreferenceUtils;
+import bitman.ay27.blockade.service.user_service.AppLockService;
 import bitman.ay27.blockade.utils.TaskUtils;
 import bitman.ay27.blockade.widget.RandomKeyboard;
 import butterknife.ButterKnife;
@@ -34,8 +35,6 @@ public class AppLockActivity extends Activity {
     private RandomKeyboard.NumberClickListener keyboardListener = new RandomKeyboard.NumberClickListener() {
         @Override
         public void onClick(View v, String value) {
-
-//            errorTxv.setVisibility(View.INVISIBLE);
 
             if (v.getId() == R.id.key_btn_back) {
                 for (int i = edts.size() - 1; i >= 0; i--) {
@@ -78,7 +77,10 @@ public class AppLockActivity extends Activity {
         if (passwd.equals(settedPasswd)) {
             errorTxv.setBackgroundResource(R.color.green_1);
             errorTxv.setText("success");
-            finishMySelf();
+
+            AppLockService.addUnlockApp(getIntent().getStringExtra("PackageName"));
+
+            start2TargetActivity();
         } else {
             for (EditText text : edts) {
                 text.setText("");
@@ -86,7 +88,7 @@ public class AppLockActivity extends Activity {
         }
     }
 
-    private void finishMySelf() {
+    private void start2TargetActivity() {
         TaskUtils.executeAsyncTask(new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -101,10 +103,7 @@ public class AppLockActivity extends Activity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                Intent intent = new Intent();
-                intent.setClassName(getIntent().getStringExtra("PackageName"), getIntent().getStringExtra("ClassName"));
-                intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-                startActivity(intent);
+                startActivity(getPackageManager().getLaunchIntentForPackage(getIntent().getStringExtra("PackageName")));
                 finish();
             }
         });
@@ -114,20 +113,22 @@ public class AppLockActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        View view = LayoutInflater.from(this).inflate(R.layout.app_lock, null);
-//        setContentView(view);
         setContentView(R.layout.app_lock);
         ButterKnife.inject(this);
 
         keyboard.registerListener(keyboardListener);
         keyboard.randomIt();
-
-//        bindService(new Intent(this,AppLockService.class), conn, BIND_AUTO_CREATE);
     }
 
     @Override
     public void onBackPressed() {
-        finishMySelf();
-        super.onBackPressed();
+        //============= start to launcher ==================
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        this.startActivity(intent);
+        //============= start to launcher ==================
+
+        this.finish();
     }
 }

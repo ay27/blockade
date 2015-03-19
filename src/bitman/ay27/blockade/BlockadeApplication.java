@@ -3,6 +3,7 @@ package bitman.ay27.blockade;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import bitman.ay27.blockade.orm.module.AppLockItem;
 import bitman.ay27.blockade.preferences.KeySet;
 import bitman.ay27.blockade.preferences.PreferenceUtils;
@@ -22,6 +23,8 @@ public class BlockadeApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        float x = metrics.density;
     }
 
     public static Context getContext() {

@@ -93,11 +93,11 @@ public class CurveProcessor {
         chainCode2 = calc_included_angle_chain(segments2);
 
         boolean result = compare_start_point(lines1, lines2);
-        Log.i(TAG, "start point compare result :" +result);
-        result = result &&  compare_included_angle_chain(chainCode1, chainCode2);
-        Log.i(TAG, "compare included angle chain result :" +result);
+        Log.i(TAG, "start point compare result :" + result);
+        result = result && compare_included_angle_chain(chainCode1, chainCode2);
+        Log.i(TAG, "compare included angle chain result :" + result);
         result = result && compare_rhythm(segments1, segments2);
-        Log.i(TAG, "compare rhythm :" +result);
+        Log.i(TAG, "compare rhythm :" + result);
         return result;
     }
 
@@ -153,7 +153,7 @@ public class CurveProcessor {
                 ArrayList<DrawView.LinePoint> oneLine = lines.get(i);
                 final int num_of_segment = num_of_segments.get(i);
                 ArrayList<Segment> tmp = null;
-                while ((left<=right) && (tmp = split_one_curve(oneLine, mid)).size() != num_of_segment) {
+                while ((left <= right) && (tmp = split_one_curve(oneLine, mid)).size() != num_of_segment) {
                     if (tmp.size() > num_of_segment) {
                         left = mid;
                         mid = (right + mid) / 2 + 1;

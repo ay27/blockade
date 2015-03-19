@@ -23,10 +23,16 @@ public class AppLockService extends AbsService {
 
     private MyBinder binder = null;
     private Timer mTimer;
-    private enum RunningStatus {
-        running, stop
+    private static ArrayList<String> lockedApp;
+    private static ArrayList<String> temporaryUnLockApp;
+    static {
+        lockedApp = new ArrayList<String>();
+        temporaryUnLockApp = new ArrayList<String>();
     }
-    private HashMap<String, RunningStatus> lockedMap;
+
+    public static void addUnlockApp(String packageName) {
+        temporaryUnLockApp.add(packageName);
+    }
 
     private void startTimer() {
         if (mTimer == null) {
@@ -58,7 +64,6 @@ public class AppLockService extends AbsService {
     @Override
     public void onCreate() {
         super.onCreate();
-        lockedMap = new HashMap<String, RunningStatus>();
         load_locked_app_list();
         startTimer();
     }
@@ -66,10 +71,10 @@ public class AppLockService extends AbsService {
     private void load_locked_app_list() {
         DatabaseHelper helper = new DatabaseHelper(this);
         RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(AppLockItem.class);
-        lockedMap = new HashMap<String, RunningStatus>();
+        lockedApp = new ArrayList<String>();
         try {
             for (Object item : dao.queryBuilder().query()) {
-                lockedMap.put(((AppLockItem)item).getPackageName(), RunningStatus.stop);
+                lockedApp.add(((AppLockItem) item).getPackageName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,17 +110,9 @@ public class AppLockService extends AbsService {
             List<ActivityManager.RunningTaskInfo> runningTaskInfos = mActivityManager.getRunningTasks(Byte.MAX_VALUE);
 
             String topPackageName = runningTaskInfos.get(0).topActivity.getPackageName();
-            if (lockedMap.containsKey(topPackageName) &&
-                    lockedMap.get(topPackageName)==RunningStatus.stop) {
+            if (lockedApp.contains(topPackageName) &&
+                    !temporaryUnLockApp.contains(topPackageName)) {
                 lockIt(topPackageName, runningTaskInfos.get(0).topActivity.getClassName());
-            }
-
-            clearLockedMap();
-            for (ActivityManager.RunningTaskInfo info : runningTaskInfos) {
-                if (lockedMap.containsKey(info.topActivity.getPackageName())) {
-                    lockedMap.put(info.topActivity.getPackageName(), RunningStatus.running);
-                    Log.i(TAG, "top activity = "+info.topActivity.getPackageName()+" is running");
-                }
             }
         }
 
@@ -125,12 +122,6 @@ public class AppLockService extends AbsService {
             intent.putExtra("PackageName", topPackageName);
             intent.putExtra("ClassName", className);
             startActivity(intent);
-        }
-
-        private void clearLockedMap() {
-            for (String item : lockedMap.keySet()) {
-                lockedMap.put(item, RunningStatus.stop);
-            }
         }
 
     }
