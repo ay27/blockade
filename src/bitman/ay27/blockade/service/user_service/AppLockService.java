@@ -24,14 +24,15 @@ public class AppLockService extends AbsService {
     private MyBinder binder = null;
     private Timer mTimer;
     private static ArrayList<String> lockedApp;
-    private static ArrayList<String> temporaryUnLockApp;
+    // true means running, false means stop.
+    private static HashMap<String, Boolean> temporaryUnLockApp;
     static {
         lockedApp = new ArrayList<String>();
-        temporaryUnLockApp = new ArrayList<String>();
+        temporaryUnLockApp = new HashMap<String, Boolean>();
     }
 
     public static void addUnlockApp(String packageName) {
-        temporaryUnLockApp.add(packageName);
+        temporaryUnLockApp.put(packageName, true);
     }
 
     private void startTimer() {
@@ -109,9 +110,20 @@ public class AppLockService extends AbsService {
         public void run() {
             List<ActivityManager.RunningTaskInfo> runningTaskInfos = mActivityManager.getRunningTasks(Byte.MAX_VALUE);
 
+            for (String key : temporaryUnLockApp.keySet()) {
+                temporaryUnLockApp.put(key, false);
+            }
+            for (ActivityManager.RunningTaskInfo info : runningTaskInfos) {
+                String pack = info.topActivity.getPackageName();
+                if (lockedApp.contains(pack) && temporaryUnLockApp.containsKey(pack)) {
+                    temporaryUnLockApp.put(pack, true);
+                }
+            }
+
+
             String topPackageName = runningTaskInfos.get(0).topActivity.getPackageName();
             if (lockedApp.contains(topPackageName) &&
-                    !temporaryUnLockApp.contains(topPackageName)) {
+                    (!temporaryUnLockApp.containsKey(topPackageName) || !temporaryUnLockApp.get(topPackageName))) {
                 lockIt(topPackageName, runningTaskInfos.get(0).topActivity.getClassName());
             }
         }
